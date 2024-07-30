@@ -58,7 +58,7 @@
                 <ul class="nav navbar-nav flex-child-menu menu-right">
                     <!-- Example back button in movie detail page -->
                     <li class="btn">
-                        <a th:href="@{/user/home(page=${page}, size=${size})}" th:text="Back">Back</a>
+                        <a th:href="@{/admin/home(page=${page}, size=${size})}" th:text="Back">Back</a>
                     </li>
                 </ul>
             </div>
@@ -76,20 +76,19 @@
                 <div class="hero-ct">
                     <h1><span th:text="${user.name}"></span>’s profile</h1>
                     <ul class="breadcumb">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li> <span class="ion-ios-arrow-right"></span>Downloaded movies</li>
+                        <li class="active"><a th:href="@{/admin/home(page=${page}, size=${size})}" th:text="Home">Home</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span>Profile</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="page-single userfav_list">
+<div class="page-single">
     <div class="container">
-        <div class="row ipad-width2">
+        <div class="row ipad-width">
             <div class="col-md-3 col-sm-12 col-xs-12">
                 <div class="user-information">
-
                     <div class="user-img">
                         <div th:if="${successImage}" class="alert alert-success" role="alert">
                             <span th:text="${successImage}"></span>
@@ -99,67 +98,92 @@
                         </div>
                         <a href="#"><img th:src="@{${user.imageUrl}}" alt="Profile"><br></a>
                         <!--<a href="#" class="redbtn">Change avatar</a>-->
-                        <form method="post" enctype="multipart/form-data" th:action="@{/user/changeAvatar/{id}(id=${user.id})}">
+                        <form method="post" enctype="multipart/form-data" th:action="@{/admin/changeAvatar/{id}(id=${user.id})}">
                             <input type="file" name="imageUrl" accept=".jpg, .jpeg, .png" required />
                             <input type="hidden" name="userId" th:value="${user.id}" />
                             <button type="submit" class="redbtn">Change avatar</button>
                         </form>
                     </div>
-
                     <div class="user-fav">
                         <p>Account Details</p>
                         <ul>
-                            <li><a th:href="@{/user/profile}">Profile</a></li>
-                            <li><a th:href="@{/user/favorites/{id}(id=${user.id})}">Favorite movies</a></li>
-                            <li class="active"><a th:href="@{/user/downloaded/{id}(id=${user.id})}">Download movies</a></li>
+                            <li  class="active"><a th:href="@{/admin/profile}">Profile</a></li>
+
                         </ul>
                     </div>
                     <div class="user-fav">
                         <p>Others</p>
                         <ul>
-
-                           <!-- <li><a href="#">Log out</a></li>-->
+                            <!-- <li><a href="#">Log out</a></li>-->
                             <li class="btn"> <a th:href="@{/logout}">Logout</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-9 col-sm-12 col-xs-12">
-
-                <div class="flex-wrap-movielist user-fav-list">
-
-                    <!--<div class="movie-item-style-2">
-                        <img src="images/uploads/mv1.jpg" alt="">
-                        <div class="mv-item-infor">
-                            <h6><a href="#">oblivion <span>(2012)</span></a></h6>
-                            <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
-                            <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...</p>
-
-                        </div>
-                    </div>-->
-
-                        <div th:each="movie : ${downloadedMovies}" class="movie-item-style-2">
-                            <img th:src="@{${movie.posterUrl}}" alt="Movie Poster">
-                            <div class="mv-item-infor">
-                                <h6><a th:href="@{/movies/{id}(id=${movie.movieId})}" th:text="${movie.title}">Movie Title</a></h6>
-                                <p class="rate"><i class="ion-android-star"></i><span th:text="${movie.imdbRating}">Rating</span> /10</p>
-                                <p class="describe" th:text="${movie.plot}">Movie Plot</p>
+                <div class="form-style-1 user-pro" action="#">
+                    <form th:action="@{/admin/profile}" method="post" class="user">
+                        <h4>01. Profile details</h4>
+                        <div class="row">
+                            <div th:if="${error}" class="alert alert-danger" role="alert">
+                                <span th:text="${error}"></span>
                             </div>
-                         </div>
+                            <div th:if="${success}" class="alert alert-success" role="alert">
+                                <span th:text="${success}"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-it">
+                                <label>Username</label>
+                                <input type="text" th:value="${user.name}" name="username" >
+                            </div>
+                            <div class="col-md-6 form-it">
+                                <label>Email Address</label>
+                                <input type="text" th:value="${user.email}" name="email">
+                            </div>
+                        </div>
 
 
-                </div>
-
-                <div class="topbar-filter">
-                    <div class="pagination2">
-                        <a th:href="@{/user/downloaded/{id}(id=${user.id}, page=0, size=${moviePage.size})}" th:if="${moviePage.number > 0}">First</a>
-                        <a th:href="@{/user/downloaded/{id}(id=${user.id}, page=${moviePage.number - 1}, size=${moviePage.size})}" th:if="${moviePage.hasPrevious()}">Previous</a>
-                        <span th:each="i : ${#numbers.sequence(0, moviePage.totalPages - 1)}">
-                            <a th:href="@{/user/downloaded/{id}(id=${user.id}, page=${i}, size=${moviePage.size})}" th:classappend="${i == moviePage.number} ? 'active'" th:text="${i + 1}"></a>
-                        </span>
-                        <a th:href="@{/user/downloaded/{id}(id=${user.id}, page=${moviePage.number + 1}, size=${moviePage.size})}" th:if="${moviePage.hasNext()}">Next</a>
-                        <a th:href="@{/user/downloaded/{id}(id=${user.id}, page=${moviePage.totalPages - 1}, size=${moviePage.size})}" th:if="${moviePage.number < moviePage.totalPages - 1}">Last</a>
-                    </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <input class="submit" type="submit" value="save">
+                            </div>
+                        </div>
+                    </form>
+                    <form th:action="@{/admin/profile/changePassword}" method="post" class="password">
+                        <h4>02. Change password</h4>
+                        <div class="row">
+                            <div th:if="${errorPassword}" class="alert alert-danger" role="alert">
+                                <span th:text="${errorPassword}"></span>
+                            </div>
+                            <div th:if="${successPassword}" class="alert alert-success" role="alert">
+                                <span th:text="${successPassword}"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-it">
+                                <label>Old Password</label>
+                                <input type="password" name="oldPassword" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-it">
+                                <label>New Password</label>
+                                <input type="password" name="newPassword" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-it">
+                                <label>Confirm New Password</label>
+                                <input type="password" name="confirmNewPassword" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <input class="submit" type="submit" value="Change Password">
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -74,7 +74,7 @@ public class LoginController {
     public ModelAndView saveUser(@ModelAttribute("user") UserForm userForm) {
         ModelAndView view = new ModelAndView("login");
 
-        String imageUrl = this.imageStorageLocation.resolve("default.png").toString(); // Default image URL
+        String imageUrl = "/img/profile/default.png"; // Default image URL
         MultipartFile imageFile = userForm.getImageFile();
         if (imageFile != null && !imageFile.isEmpty()) {
             try {
@@ -83,7 +83,7 @@ public class LoginController {
 
                 Files.createDirectories(path.getParent());
                 Files.write(path, imageFile.getBytes());
-                imageUrl = path.toString();
+                imageUrl ="/img/profile/"+fileName;
             } catch (IOException e) {
                 e.printStackTrace();
             }

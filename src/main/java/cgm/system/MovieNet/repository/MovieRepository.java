@@ -32,8 +32,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Query("SELECT m FROM Movie m WHERE m.deleted = false")
     Page<Movie> findAllActiveMovies(Pageable pageable);
 
-    @Query("SELECT m FROM Movie m WHERE m.downloaded = true AND m.user.name = :name")
-    public List<Movie> findByDownloadedTrueAndUserUsername(@Param("name") String username);
 
 
 

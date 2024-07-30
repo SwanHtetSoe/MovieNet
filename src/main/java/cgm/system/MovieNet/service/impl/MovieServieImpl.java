@@ -3,8 +3,10 @@ package cgm.system.MovieNet.service.impl;
 import cgm.system.MovieNet.entity.Genre;
 import cgm.system.MovieNet.entity.Movie;
 import cgm.system.MovieNet.entity.User;
+import cgm.system.MovieNet.entity.UserMovieDownload;
 import cgm.system.MovieNet.repository.MovieRepository;
 import cgm.system.MovieNet.repository.ReviewRepository;
+import cgm.system.MovieNet.repository.UserMovieDownloadRepository;
 import cgm.system.MovieNet.repository.UserRepository;
 import cgm.system.MovieNet.service.GenreService;
 import cgm.system.MovieNet.service.MovieService;
@@ -25,6 +27,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieServieImpl implements MovieService {
@@ -43,6 +46,12 @@ public class MovieServieImpl implements MovieService {
     private final Path imageStorageLocation=Path.of("src\\main\\resources\\static\\img\\poster").toAbsolutePath();
     private final Path fileStorageLocation= Path.of("src\\main\\resources\\static\\file\\movie").toAbsolutePath();
 
+    @Autowired
+    private UserMovieDownloadRepository userMovieDownloadRepository;
+
+    public List<UserMovieDownload> getDownloadedMovies(User user) {
+        return userMovieDownloadRepository.findByUserAndDownloadedTrue(user);
+    }
 
     @Override
     public Page<Movie> findPaginated(int page, int size) {
@@ -175,18 +184,7 @@ public class MovieServieImpl implements MovieService {
         return new PageImpl<>(favoriteMovies.subList(start, end), pageable, favoriteMovies.size());
     }
 
-    @Override
-    public Page<Movie> getDownloadedMoviesByUserNameForPage(String username, Pageable pageable) {
 
-        List<Movie> downloadedMovies = movieRepository.findByDownloadedTrueAndUserUsername(username);
-        int start = (int) pageable.getOffset();
-        int end = Math.min((start + pageable.getPageSize()), downloadedMovies.size());
-        return new PageImpl<>(downloadedMovies.subList(start, end), pageable, downloadedMovies.size());
-    }
-
-    public List<Movie> findDownloadedMoviesByUser(String username) {
-        return movieRepository.findByDownloadedTrueAndUserUsername(username);
-    }
 
     public void save(Movie movie) {
         movieRepository.save(movie);
@@ -196,7 +194,19 @@ public class MovieServieImpl implements MovieService {
         return movieRepository.findById(movieId).orElseThrow(() -> new RuntimeException("Movie not found"));
     }
 
+    public Page<Movie> getDownloadedMoviesByUserNameForPage(String username, Pageable pageable) {
+        User user = userRepository.findByName(username);
+        Page<UserMovieDownload> downloads = userMovieDownloadRepository.findByUserAndDownloadedTrue(user, pageable);
+        return downloads.map(UserMovieDownload::getMovie);
+    }
 
+    public List<Movie> findDownloadedMoviesByUser(String username) {
+        User user = userRepository.findByName(username);
+        List<UserMovieDownload> downloads = userMovieDownloadRepository.findByUserAndDownloadedTrue(user);
+        return downloads.stream()
+                .map(UserMovieDownload::getMovie)
+                .collect(Collectors.toList());
+    }
 
 
 }

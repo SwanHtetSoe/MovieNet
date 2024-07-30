@@ -42,6 +42,9 @@ public class User {
     @Column(name = "imageUrl")
     private String imageUrl; // Field for profile image URL
 
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserMovieDownload> downloadedMovies;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_favorite_movies",

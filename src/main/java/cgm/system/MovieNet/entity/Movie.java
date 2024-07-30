@@ -17,6 +17,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Movie {
 
     @Id
@@ -57,9 +58,8 @@ public class Movie {
     @Column(name = "downloaded")
     private Boolean downloaded = false;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserMovieDownload> userDownloads;
 
 
 

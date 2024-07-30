@@ -1,6 +1,8 @@
 package cgm.system.MovieNet.service;
 
 import cgm.system.MovieNet.entity.Movie;
+import cgm.system.MovieNet.entity.User;
+import cgm.system.MovieNet.entity.UserMovieDownload;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
@@ -34,6 +36,7 @@ public interface MovieService {
     public void save(Movie movie);
     public Movie findById(Long movieId);
     public Page<Movie> getDownloadedMoviesByUserNameForPage(String username, Pageable pageable);
+    public List<UserMovieDownload> getDownloadedMovies(User user);
 
 
 }
