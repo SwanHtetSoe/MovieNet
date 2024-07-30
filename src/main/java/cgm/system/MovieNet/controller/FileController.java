@@ -1,6 +1,9 @@
 package cgm.system.MovieNet.controller;
 
+import cgm.system.MovieNet.entity.Movie;
+import cgm.system.MovieNet.repository.MovieRepository;
 import cgm.system.MovieNet.service.FileStorageService;
+import cgm.system.MovieNet.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -20,14 +23,17 @@ public class FileController {
     @Autowired
     private FileStorageService fileStorageService;
 
+    @Autowired
+    private MovieService movieService;
+
     @PostMapping("/uploadFile")
     public String uploadFile(@RequestParam("file") MultipartFile file) {
         String fileName = fileStorageService.storeFile(file);
         return "redirect:/movie-details";
     }
 
-    @GetMapping("/downloadFile")
-    public ResponseEntity<Resource> downloadFile(@RequestParam String fileUrl) {
+    @GetMapping("/downloadFile/{movieId}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable Long movieId,@RequestParam String fileUrl, @RequestParam String quality) {
         Path path = Paths.get(fileUrl);
         Resource resource;
 
@@ -40,10 +46,17 @@ public class FileController {
             throw new RuntimeException("Error reading file: " + fileUrl, e);
         }
 
+        // Append the quality suffix to the filename for the download
+        String originalFileName = resource.getFilename();
+        String qualityFileName = originalFileName.replace(".mp4", "_" + quality + ".mp4");
+
         String contentType = "application/octet-stream";
+        Movie movie = movieService.findById(movieId);
+        movie.setDownloaded(true);
+        movieService.save(movie);
         return ResponseEntity.ok()
                 .contentType(org.springframework.http.MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + qualityFileName + "\"")
                 .body(resource);
     }
 }

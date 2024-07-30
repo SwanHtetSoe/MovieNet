@@ -15,19 +15,29 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     @Query("SELECT m FROM Movie m JOIN m.genres g WHERE m.deleted = false AND " +
             "(:title IS NULL OR m.title LIKE %:title%) AND " +
-            "(:genreId IS NULL OR g.genreId = :genreId)")
-    public List<Movie> searchMovies(@Param("title") String title, @Param("genreId") Long genreId);
+            "(:genreId IS NULL OR g.genreId = :genreId) AND " +
+            "(:rating IS NULL OR m.imdbRating = :rating)")
+    public List<Movie> searchMovies(@Param("title") String title, @Param("genreId") Long genreId, @Param("rating") Double rating);
 
     public Page<Movie> findByTitleContainingIgnoreCaseAndDeletedFalse(String title, Pageable pageable);
 
     // Method to search movies by genre ID
     public Page<Movie> findByGenres_GenreIdAndDeletedFalse(Long genreId, Pageable pageable);
 
+    public Page<Movie> findByImdbRatingAndDeletedFalse(Double rating, Pageable pageable);
+
     @Query("SELECT m FROM Movie m WHERE m.deleted = false")
     public List<Movie> findAllActiveMovies();
 
     @Query("SELECT m FROM Movie m WHERE m.deleted = false")
     Page<Movie> findAllActiveMovies(Pageable pageable);
+
+    @Query("SELECT m FROM Movie m WHERE m.downloaded = true AND m.user.name = :name")
+    public List<Movie> findByDownloadedTrueAndUserUsername(@Param("name") String username);
+
+
+
+
 
 }
 

@@ -48,8 +48,13 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
             Role role2 = new Role("User");
             roleRepository.save(role1);
             roleRepository.save(role2);
-            User user = new User("admin","thazinmin9861@gmail.com",passwordEncoder.encode("admin123"),role1);
-            User userData = new User("user","cgm.thazinmin@gmail.com",passwordEncoder.encode("admin123"),role2);
+            User user = new User("admin","thazinmin9861@gmail.com",passwordEncoder.encode("admin123"),role1,
+                    "/img/profile/default.png");
+
+            User userData = new User("user","cgm.thazinmin@gmail.com",passwordEncoder.encode("admin123"),role2, "/img/profile/default.png");
+
+
+
             userRepository.save(user);
             userRepository.save(userData);
 
@@ -89,7 +94,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.1,
                     "Michael Bay, Silke Engelhardt",
                     "/img/poster/Action/13 hour The secret soldiers of benghazi.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie1Genres = new ArrayList<>();
@@ -105,7 +113,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.4,
                     "Peter Berg",
                     "/img/poster/Action/Hancock.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie2Genres = new ArrayList<>();
@@ -120,7 +131,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.5,
                     "Elizabeth Ludwick-Bax, Gary Fleder",
                     "/img/poster/Action/Homefront.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie3Genres = new ArrayList<>();
@@ -135,7 +149,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.5,
                     "Byron Haskin",
                     "/img/poster/Action/War of the Worlds.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie4Genres = new ArrayList<>();
@@ -150,7 +167,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.7,
                     "Kim Sung-hoon",
                     "/img/poster/Action/Confidential Assignment.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie5Genres = new ArrayList<>();
@@ -165,7 +185,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.4,
                     "King Hu",
                     "/img/poster/Action/Dragon Inn.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie6Genres = new ArrayList<>();
@@ -180,7 +203,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.8,
                     "George Miller",
                     "/img/poster/Action/Furiosa.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie7Genres = new ArrayList<>();
@@ -195,7 +221,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.6,
                     "Arun Varma",
                     "/img/poster/Action/Garudan.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie8Genres = new ArrayList<>();
@@ -211,7 +240,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     "Jicheng Zou",
 
                     "/img/poster/Action/Jungle Chase.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie9Genres = new ArrayList<>();
@@ -226,7 +258,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.0,
                     "Ronny Yu",
                     "/img/poster/Action/Legacy Of Rage.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie10Genres = new ArrayList<>();
@@ -241,7 +276,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     5.3,
                     "Chen Xiong",
                     "/img/poster/Action/Master of Mao Shan.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie11Genres = new ArrayList<>();
@@ -256,7 +294,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.3,
                     "Xavier Gens",
                     "/img/poster/Action/Mayhem.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie12Genres = new ArrayList<>();
@@ -271,7 +312,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.7,
                     "Ricky Lau",
                     "/img/poster/Action/Mr.Vampire 3.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie13Genres = new ArrayList<>();
@@ -286,7 +330,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.3,
                     "Ricky Lau",
                     "/img/poster/Action/Mr.Vampire 4.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie14Genres = new ArrayList<>();
@@ -301,7 +348,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.3,
                     "Ricky Lau",
                     "/img/poster/Action/Mr.Vampire 1.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie15Genres = new ArrayList<>();
@@ -316,7 +366,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.5,
                     "Corey Yuen",
                     "/img/poster/Action/My Father Is A Hero.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie16Genres = new ArrayList<>();
@@ -331,7 +384,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.6,
                     "Syafiq Yusof",
                     "/img/poster/Action/Sheriff Narko Integriti.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie17Genres = new ArrayList<>();
@@ -346,7 +402,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.1,
                     "Mark L.Lester",
                     "/img/poster/Action/Showdown In Little Tokyo.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie18Genres = new ArrayList<>();
@@ -361,7 +420,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.9,
                     "Lee Won-tae",
                     "/img/poster/Action/The Gangster,The Cop,The Devil.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie19Genres = new ArrayList<>();
@@ -378,7 +440,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.4,
                     "Guy Ritchie, Max Keene",
                     "/img/poster/Comedy/Aladdin.jpeg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie22Genres = new ArrayList<>();
@@ -393,7 +458,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.9,
                     "Edgar Wright",
                     "/img/poster/Comedy/Hot Fuzz.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie23Genres = new ArrayList<>();
@@ -408,7 +476,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.2,
                     "Peter Howitt",
                     "/img/poster/Comedy/Johnny Englist 2003.jfif",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie24Genres = new ArrayList<>();
@@ -423,7 +494,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.3,
                     "Alex Oakley, Andrew McEwan",
                     "/img/poster/Comedy/Johnny English reborn 2013.jfif",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie25Genres = new ArrayList<>();
@@ -438,7 +512,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.2,
                     "David Kerr",
                     "/img/poster/Comedy/Johnny English Strike again 2018.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie26Genres = new ArrayList<>();
@@ -452,7 +529,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     longString(toAbsolutePath("src\\main\\resources\\static\\text\\plot\\Comedy\\50 50 (2011).txt")),7.6,
                     "Jonathan Levine",
                     "/img/poster/Comedy/50 50.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie27Genres = new ArrayList<>();
@@ -467,7 +547,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.9,
                     "Ashish Bende",
                     "/img/poster/Comedy/Aatmapamphlet.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie28Genres = new ArrayList<>();
@@ -482,7 +565,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.0,
                     "Terry Jones",
                     "/img/poster/Comedy/Absolutely Anything.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie29Genres = new ArrayList<>();
@@ -496,7 +582,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     longString(toAbsolutePath("src\\main\\resources\\static\\text\\plot\\Comedy\\Beau Is Afraid (2023).txt")),7.1,
                     "Ari Aster",
                     "/img/poster/Comedy/Beau is Afraid.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie30Genres = new ArrayList<>();
@@ -511,7 +600,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.4,
                     "Dennis Dugan",
                     "/img/poster/Comedy/Big Daddy.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie31Genres = new ArrayList<>();
@@ -526,7 +618,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     8.5,
                     "Charles Chaplin",
                     "/img/poster/Comedy/City Light.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie32Genres = new ArrayList<>();
@@ -541,7 +636,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.0,
                     "Jean-Marc Vallée",
                     "/img/poster/Comedy/Demolition.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie33Genres = new ArrayList<>();
@@ -556,7 +654,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.1,
                     "Peter Sohn",
                     "/img/poster/Comedy/Elemental.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie34Genres = new ArrayList<>();
@@ -571,7 +672,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.9,
                     "Ding Sheng",
                     "/img/poster/Comedy/Little big solider.jfif",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie35Genres = new ArrayList<>();
@@ -586,7 +690,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     5.9,
                     "Ricky Lau",
                     "/img/poster/Comedy/Mr. Vampire 2.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie36Genres = new ArrayList<>();
@@ -601,7 +708,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.5,
                     "Phontharis Chotkijsadarsopon",
                     "/img/poster/Comedy/Pee nak 3.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie37Genres = new ArrayList<>();
@@ -616,7 +726,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     ,5.6,
                     "Renny Harlin",
                     "/img/poster/Comedy/Skip Trace.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie38Genres = new ArrayList<>();
@@ -631,7 +744,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     5.7,
                     "Danny Ray",
                     "/img/poster/Comedy/The Treasure Protector.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie39Genres = new ArrayList<>();
@@ -646,7 +762,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.0,
                     "Peter Hewitt",
                     "/img/poster/Comedy/The Maiden Heist.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie40Genres = new ArrayList<>();
@@ -663,7 +782,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.7,
                     "Takashi Yamazaki",
                     "/img/poster/Drama/Always Sunset on third Street.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie43Genres = new ArrayList<>();
@@ -678,7 +800,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.0,
                     "Ringo Lam",
                     "/img/poster/Drama/City On Fire.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie44Genres = new ArrayList<>();
@@ -693,7 +818,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.6,
                     "Jon Mallard",
                     "/img/poster/Drama/Gifted.jfif",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie45Genres = new ArrayList<>();
@@ -707,7 +835,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     longString(toAbsolutePath("src\\main\\resources\\static\\text\\plot\\Comedy\\Shanghai Triad (1995).txt")),7.1,
                     "Yimou Zhang",
                     "/img/poster/Drama/Shanghai Triad.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie46Genres = new ArrayList<>();
@@ -722,7 +853,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.7,
                     "James Mangold",
                     "/img/poster/Drama/3.10.To.Yuma.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie47Genres = new ArrayList<>();
@@ -737,7 +871,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.1,
                     "Alejandro Amenábar",
                     "/img/poster/Drama/Agora.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie48Genres = new ArrayList<>();
@@ -752,7 +889,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.7,
                     "Chi Leung 'Jacob' Cheung",
                     "/img/poster/Drama/Battle of the warriors.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie49Genres = new ArrayList<>();
@@ -767,7 +907,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.9,
                     "Rikiya Imaizumi",
                     "/img/poster/Drama/Call me Chihiro.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie50Genres = new ArrayList<>();
@@ -782,7 +925,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.9,
                     "Takahiro Miki",
                     "/img/poster/Drama/Drawing Closer.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie51Genres = new ArrayList<>();
@@ -797,7 +943,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.0,
                     "Gu Xiaogang",
                     "/img/poster/Drama/Dwelling by the West Lake.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie52Genres = new ArrayList<>();
@@ -812,7 +961,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.0,
                     "Gil Junger",
                     "/img/poster/Drama/if only.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie53Genres = new ArrayList<>();
@@ -827,7 +979,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     5.8,
                     "Mike Hodges",
                     "/img/poster/Drama/I'll Sleep When I'm Dead.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie54Genres = new ArrayList<>();
@@ -842,7 +997,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.5,
                     "Edgar Wright",
                     "/img/poster/Drama/Last Night in Soho.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie55Genres = new ArrayList<>();
@@ -857,7 +1015,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.8,
                     "Jim Sheridan",
                     "/img/poster/Drama/My Left Foot.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie56Genres = new ArrayList<>();
@@ -872,7 +1033,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     5.0,
                     "Srinivas Avasarala",
                     "/img/poster/Drama/Phalana Abbayi Phalana Ammayi.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie57Genres = new ArrayList<>();
@@ -887,7 +1051,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.8,
                     "DK Welchman, Hugh Welchman",
                     "/img/poster/Drama/The Peasants.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie58Genres = new ArrayList<>();
@@ -902,7 +1069,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.9,
                     "Steve Kloves",
                     "/img/poster/Drama/The Fabulous Baker boys.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie59Genres = new ArrayList<>();
@@ -917,7 +1087,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.7,
                     "Jean-Jacques Annaud",
                     "/img/poster/Drama/The name of the rose.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie60Genres = new ArrayList<>();
@@ -932,7 +1105,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.4,
                     "James Gray",
                     "/img/poster/Drama/The Yards.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie61Genres = new ArrayList<>();
@@ -949,7 +1125,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.1,
                     "Gore Verbinski",
                     "/img/poster/Pirates Of The Caribbean/At World's End.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie63Genres = new ArrayList<>();
@@ -964,7 +1143,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.6,
                     "Carolina Häggström, Espen Sandberg, Joachim Rønning, Joecy Shepherd, Victoria Sullivan",
                     "/img/poster/Pirates Of The Caribbean/Dead Men Tell No Tales.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie64Genres = new ArrayList<>();
@@ -979,7 +1161,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     8.0,
                     "Gary Romolo Fiorelli, Gore Verbinski, Peter Kohn, Susan J. Hellmann",
                     "/img/poster/Pirates Of The Caribbean/The Curse of the Black Pearl.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie65Genres = new ArrayList<>();
@@ -994,7 +1179,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.6,
                     "Kerry Lyn McKissick, Rob Marshall",
                     "/img/poster/Pirates Of The Caribbean/On Stranger Tides.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie66Genres = new ArrayList<>();
@@ -1009,7 +1197,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.3,
                     "Ivy HO",
                     "/img/poster/Romance/Crossing Hennessy.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie67Genres = new ArrayList<>();
@@ -1024,7 +1215,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.5,
                     "Kentaro Takemura",
                     "/img/poster/Romance/Our Secret Diary.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie68Genres = new ArrayList<>();
@@ -1039,7 +1233,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.8,
                     "James Ivory",
                     "/img/poster/Romance/the remains of the day.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie69Genres = new ArrayList<>();
@@ -1054,7 +1251,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.9,
                     "Wim Wenders",
                     "/img/poster/Romance/wings of desire.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie70Genres = new ArrayList<>();
@@ -1069,7 +1269,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.4,
                     "Mehdi Avaz",
                     "/img/poster/Romance/a beautiful life.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie71Genres = new ArrayList<>();
@@ -1084,7 +1287,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.6,
                     "Natsuki Takahashi",
                     "/img/poster/Romance/a girl in my room.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie72Genres = new ArrayList<>();
@@ -1099,7 +1305,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.0,
                     "Luo Luo",
                     "/img/poster/Romance/Almost love.jfif",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie73Genres = new ArrayList<>();
@@ -1114,7 +1323,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.2,
                     "Kim Jeong-kwon",
                     "/img/poster/Romance/Ditto.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie74Genres = new ArrayList<>();
@@ -1129,7 +1341,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     5.9,
                     "Han Yan",
                     "/img/poster/Romance/I miss you.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie75Genres = new ArrayList<>();
@@ -1144,7 +1359,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.5,
                     "Rikiya Imaizumi",
                     "/img/poster/Romance/just only love.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie76Genres = new ArrayList<>();
@@ -1159,7 +1377,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.9,
                     "Tran Thanh",
                     "/img/poster/Romance/Mai.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie77Genres = new ArrayList<>();
@@ -1174,7 +1395,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.0,
                     "Zhang Di Sha",
                     "/img/poster/Romance/my best summer.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie78Genres = new ArrayList<>();
@@ -1189,7 +1413,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     5.9,
                     "Kim Hee Jin",
                     "/img/poster/Romance/My name is loh kiwan.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie79Genres = new ArrayList<>();
@@ -1204,7 +1431,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     8.9,
                     "Balu Sharma",
                     "/img/poster/Romance/Neetho.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie80Genres = new ArrayList<>();
@@ -1219,7 +1449,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.0,
                     "Park Beom-su",
                     "/img/poster/Romance/single in seoul.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie81Genres = new ArrayList<>();
@@ -1234,7 +1467,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     8.6,
                     "Akhilesh Jaiswal",
                     "/img/poster/Romance/star fish.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie82Genres = new ArrayList<>();
@@ -1249,7 +1485,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.2,
                     "Ned Benson",
                     "/img/poster/Romance/the greatest hits.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie83Genres = new ArrayList<>();
@@ -1264,7 +1503,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.5,
                     "Neil Burger",
                     "/img/poster/Romance/the illusionist.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie84Genres = new ArrayList<>();
@@ -1279,7 +1521,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.7,
                     "Augustine Frizzell",
                     "/img/poster/Romance/The Last Letter From Your Lover.jfif",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie85Genres = new ArrayList<>();
@@ -1296,7 +1541,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.3,
                     "Kurt Wimmer, Mark Taylor, Pamela Alch, Stella D'Onofrio, Tess Malone",
                     "/img/poster/Sci-fi/Equilibrium.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie87Genres = new ArrayList<>();
@@ -1311,7 +1559,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.0,
                     "Ana Maria Quintana, Dawn Massaro",
                     "/img/poster/Sci-fi/Passengers.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie88Genres = new ArrayList<>();
@@ -1326,7 +1577,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.3,
                     "Miguel Sapochnik",
                     "/img/poster/Sci-fi/Finch.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie89Genres = new ArrayList<>();
@@ -1341,7 +1595,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     8.0,
                     "Andrew Bernstein, Marilyn Bailey",
                     "/img/poster/Sci-fi/12 Monkeys.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie90Genres = new ArrayList<>();
@@ -1356,7 +1613,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.4,
                     "Chaitu Madala",
                     "/img/poster/Sci-fi/7 11 PM.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie91Genres = new ArrayList<>();
@@ -1371,7 +1631,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     4.2,
                     "Mitch Jenkins",
                     "/img/poster/Sci-fi/A Million Days.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie92Genres = new ArrayList<>();
@@ -1386,7 +1649,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.9,
                     "Benni Setiawan",
                     "/img/poster/Sci-fi/Ancika.Dia.Yang.Bersamaku..jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie93Genres = new ArrayList<>();
@@ -1401,7 +1667,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     5.7,
                     "Justin Kurzel, Lisa Vick",
                     "/img/poster/Sci-fi/Assassin's Creed.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie94Genres = new ArrayList<>();
@@ -1416,7 +1685,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.3,
                     "Lakshya Raj Anand",
                     "/img/poster/Sci-fi/Attack.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie95Genres = new ArrayList<>();
@@ -1430,7 +1702,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     longString(toAbsolutePath("src\\main\\resources\\static\\text\\plot\\Sci-fi\\Chronicle (2012).txt")),7.0,
                     "Josh Trank, Loma Bennet",
                     "/img/poster/Sci-fi/Chronicle.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie96Genres = new ArrayList<>();
@@ -1445,7 +1720,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     5.8,
                     "Dmitriy Kiselev",
                     "/img/poster/Sci-fi/Mira.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie97Genres = new ArrayList<>();
@@ -1460,7 +1738,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.0,
                     "Christopher Leone",
                     "/img/poster/Sci-fi/Parallel.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie98Genres = new ArrayList<>();
@@ -1474,7 +1755,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     longString(toAbsolutePath("src\\main\\resources\\static\\text\\plot\\Sci-fi\\Seobok(2021).txt")),8.3,
                     "Lee Yong-ju",
                     "/img/poster/Sci-fi/Seobok.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie99Genres = new ArrayList<>();
@@ -1489,7 +1773,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.5,
                     "Duncan Jones",
                     "/img/poster/Sci-fi/Source code.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie100Genres = new ArrayList<>();
@@ -1504,7 +1791,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     9.3,
                     "Sung-hee Jo",
                     "/img/poster/Sci-fi/Space Sweeperrs.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie101Genres = new ArrayList<>();
@@ -1519,7 +1809,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.1,
                     "Carolina Jiménez, Douglas Plasse",
                     "/img/poster/Sci-fi/Star Trek Beyond.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie102Genres = new ArrayList<>();
@@ -1534,7 +1827,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.1,
                     "Kay Sweeney, Roland Emmerich",
                     "/img/poster/Sci-fi/Stargate.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie103Genres = new ArrayList<>();
@@ -1549,7 +1845,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.5,
                     "Frant Gwo",
                     "/img/poster/Sci-fi/The Wandering Earth (Liu Lang Di Qiu).jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie104Genres = new ArrayList<>();
@@ -1564,7 +1863,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.0,
                     "Jonathan Demme",
                     "/img/poster/Sci-fi/The Manchurian Candidate.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie105Genres = new ArrayList<>();
@@ -1582,7 +1884,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.3,
                     "Lik-Chi Lee, Stephen Chow",
                     "/img/poster/Stephen chow/God of Cookery.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie108Genres = new ArrayList<>();
@@ -1597,7 +1902,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.1,
                     "Lau Sze-Yu",
                     "/img/poster/Stephen chow/Look Out,Officer!.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie109Genres = new ArrayList<>();
@@ -1612,7 +1920,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     6.1,
                     "Lee Lik-Chi",
                     "/img/poster/Stephen chow/The Lucky Guy.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie110Genres = new ArrayList<>();
@@ -1627,7 +1938,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.2,
                     "Stephen Chow,Lik-Chi Lee",
                     "/img/poster/Stephen chow/From Beijng with Love.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie111Genres = new ArrayList<>();
@@ -1642,7 +1956,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.3,
                     "Stephen Chow, Lik-Chi Lee",
                     "/img/poster/Stephen chow/King of Comedy.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie112Genres = new ArrayList<>();
@@ -1657,7 +1974,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.8,
                     "Dorota Kobiela, Hugh Welchman",
                     "/img/poster/Vincent/Loving Vincent.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie113Genres = new ArrayList<>();
@@ -1672,7 +1992,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     8.1,
                     "Andrew Hutton",
                     "/img/poster/Vincent/Van Gogh.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie114Genres = new ArrayList<>();
@@ -1687,7 +2010,10 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     7.0,
                     "Robert Altman",
                     "/img/poster/Vincent/Vincent & Theo.jpg",
-                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"));
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\(CM) Hancock.2008.Unrated.BluRay.Remux.1080p.AVC.AAC5.1 - Naung.mp4"),
+            toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\Deadpool & Wolverine - Final Trailer.mp4"),
+                    toAbsolutePath("src\\main\\resources\\static\\file\\movie\\Action\\videoplayback.mp4")
+            );
 
             //Adding Genre
             List<Genre> movie115Genres = new ArrayList<>();
@@ -1704,35 +2030,41 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
                     "Swan Htet",
                     "swanh@gmail.com",
                     passwordEncoder.encode("admin123"),
-                    role2);
+                    role2,
+                    "/img/profile/user1.jfif");
+
             userRepository.save(user1);
 
             User user2 = new User(
                     "Swan Soe",
                     "swanh@gmail.com",
                     passwordEncoder.encode("admin123"),
-                    role2);
+                    role2,
+                    "/img/profile/user2.jpg");
             userRepository.save(user2);
 
             User user3 = new User(
                     "Htet Htet",
                     "htethtet@gmail.com",
                     passwordEncoder.encode("admin123"),
-                    role2);
+                    role2,
+                    "/img/profile/user3.webp");
             userRepository.save(user3);
 
             User user4 = new User(
                     "Min Htet",
                     "minhtet@gmail.com",
                     passwordEncoder.encode("admin123"),
-                    role2);
+                    role2,
+                    "/img/profile/user4.avif");
             userRepository.save(user4);
 
             User user5 = new User(
                     "Naing Naing",
                     "naingnaing@gmail.com",
                     passwordEncoder.encode("admin123"),
-                    role2);
+                    role2,
+                    "/img/profile/user5.webp");
             userRepository.save(user5);
 
 

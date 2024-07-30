@@ -56,7 +56,9 @@
           </ul>
           <ul class="nav navbar-nav flex-child-menu menu-right">
             <!--<li class="loginLink"><a href="#">LOG In</a></li>-->
-
+            <li class="btn">
+              <a th:href="@{/admin/home(page=${page}, size=${size})}" th:text="Back">Back</a>
+            </li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -106,7 +108,7 @@
             <div class="movie-rate">
               <div class="rate">
                 <i class="ion-android-star"></i>
-                <p><span th:text="${adm_movie.imdb_rating}"></span> /10<br>
+                <p><span th:text="${adm_movie.imdbRating}"></span> /10<br>
 
                 </p>
               </div>
@@ -131,8 +133,9 @@
 
                           <div class="sb-it">
                             <label for="releaseDate">Release Year:</label>
-                            <input type="number" id="releaseDate" name="releaseDate" th:field="*{releaseDate}" required />
+                            <input type="text" id="releaseDate" name="releaseDate" th:field="*{releaseDate}" pattern="\d{4}" title="Please enter a valid four-digit year." required />
                           </div>
+
 
                           <div class="sb-it">
                             <label>Genres:</label>
@@ -144,8 +147,9 @@
 
                           <div class="sb-it">
                             <label for="imdb_rating">IMDb Rating:</label>
-                            <input type="number" id="imdb_rating" name="imdb_rating" th:field="*{imdb_rating}" step="0.1" required />
+                            <input type="number" id="imdb_rating" name="imdb_rating" th:field="*{imdbRating}" min="0" max="10" step="0.1" required />
                           </div>
+
 
                           <div class="sb-it">
                             <label for="director">Director:</label>

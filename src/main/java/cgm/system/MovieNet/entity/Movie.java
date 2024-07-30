@@ -31,7 +31,7 @@ public class Movie {
     private Integer releaseDate;
 
     @Column(name = "imdb_rating")
-    private Double imdb_rating;
+    private Double imdbRating;
 
     @Column(name = "plot",columnDefinition = "TEXT")
     private String plot;
@@ -42,11 +42,26 @@ public class Movie {
     @Column(name = "poster_url")
     private String posterUrl;
 
-    @Column(name = "file_url")
-    private String fileUrl;
+    @Column(name = "file_url_360")
+    private String fileUrl360;
+
+    @Column(name = "file_url_720")
+    private String fileUrl720;
+
+    @Column(name = "file_url_1080")
+    private String fileUrl1080;
 
     @Column(name = "deleted")
     private Boolean deleted = false;
+
+    @Column(name = "downloaded")
+    private Boolean downloaded = false;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "Movie_Genres",
@@ -57,14 +72,16 @@ public class Movie {
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
 
-    public Movie(String title, Integer releaseDate, String plot,Double imdb_rating, String director, String posterUrl, String fileUrl) {
+    public Movie(String title, Integer releaseDate, String plot, Double imdbRating, String director, String posterUrl, String fileUrl360, String fileUrl720, String fileUrl1080) {
         this.title = title;
         this.releaseDate = releaseDate;
         this.plot = plot;
-        this.imdb_rating = imdb_rating;
+        this.imdbRating = imdbRating;
         this.director = director;
         this.posterUrl = posterUrl;
-        this.fileUrl = fileUrl;
+        this.fileUrl360 = fileUrl360;
+        this.fileUrl720 = fileUrl720;
+        this.fileUrl1080 = fileUrl1080;
     }
 
     // getters and setters

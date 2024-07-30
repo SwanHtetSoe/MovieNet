@@ -2,6 +2,7 @@ package cgm.system.MovieNet.form;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class UserForm {
@@ -16,4 +17,5 @@ public class UserForm {
     @NotNull(message = "Fill the password")
     private String password;
 
+    private MultipartFile imageFile; // Field for the profile image upload
 }

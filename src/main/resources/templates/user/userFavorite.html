@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7 no-js" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 no-js" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
+
+<!-- moviesingle07:38-->
+
+<head>
+    <!-- Basic need -->
+    <title>Open Pediatrics</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="profile" href="#">
+
+    <!--Google Font-->
+    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+    <!-- Mobile specific meta -->
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone-no">
+
+    <!-- CSS files -->
+    <link rel="stylesheet" th:href="@{/css/plugins.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+
+<!-- BEGIN | Header -->
+<header class="ht-header">
+    <div class="container">
+        <nav class="navbar navbar-default navbar-custom">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header logo">
+                <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <div id="nav-icon1">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <img class="logo" th:src="@{/images/logo1.png}" alt="" width="119" height="58">
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav flex-child-menu menu-left">
+                    <!-- Other items here -->
+                </ul>
+                <ul class="nav navbar-nav flex-child-menu menu-right">
+                    <!-- Example back button in movie detail page -->
+                    <li class="btn">
+                        <a th:href="@{/user/home(page=${page}, size=${size})}" th:text="Back">Back</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- /.navbar-collapse -->
+        </nav>
+
+    </div>
+</header><!-- END | Header -->
+
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1><span th:text="${user.name}"></span>’s profile</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span>Favorite movies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-single userfav_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="user-information">
+
+                    <div class="user-img">
+                        <div th:if="${successImage}" class="alert alert-success" role="alert">
+                            <span th:text="${successImage}"></span>
+                        </div>
+                        <div th:if="${errorImage}" class="alert alert-danger" role="alert">
+                            <span th:text="${errorImage}"></span>
+                        </div>
+                        <a href="#"><img th:src="@{${user.imageUrl}}" alt="Profile"><br></a>
+                        <!--<a href="#" class="redbtn">Change avatar</a>-->
+                        <form method="post" enctype="multipart/form-data" th:action="@{/user/changeAvatar/{id}(id=${user.id})}">
+                            <input type="file" name="imageUrl" accept=".jpg, .jpeg, .png" required />
+                            <input type="hidden" name="userId" th:value="${user.id}" />
+                            <button type="submit" class="redbtn">Change avatar</button>
+                        </form>
+                    </div>
+
+                    <div class="user-fav">
+                        <p>Account Details</p>
+                        <ul>
+                            <li><a th:href="@{/user/profile}">Profile</a></li>
+                            <li class="active"><a th:href="@{/user/favorites}">Favorite movies</a></li>
+                            <li><a th:href="@{/user/downloaded/{id}(id=${user.id})}">Downloaded movies</a></li>
+                        </ul>
+                    </div>
+                    <div class="user-fav">
+                        <p>Others</p>
+                        <ul>
+                           <!-- <li><a href="#">Log out</a></li>-->
+                            <li class="btn"> <a th:href="@{/logout}">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12 col-xs-12">
+
+                <div class="flex-wrap-movielist user-fav-list">
+
+                    <!--<div class="movie-item-style-2">
+                        <img src="images/uploads/mv1.jpg" alt="">
+                        <div class="mv-item-infor">
+                            <h6><a href="#">oblivion <span>(2012)</span></a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+                            <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...</p>
+
+                        </div>
+                    </div>-->
+
+                    <div th:each="movie : ${favoriteMovies}" class="movie-item-style-2">
+                        <img th:src="@{${movie.posterUrl}}" alt="Movie Poster">
+                        <div class="mv-item-infor">
+                            <h6><a th:href="@{/user/movies/{id}(id=${movie.movieId})}"><span th:text="${movie.title}"></span> <span th:text="(${movie.releaseDate})"></span></a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span th:text="${movie.imdbRating}"></span> /10</p>
+                            <p class="describe" th:text="${movie.plot}">Movie Plot</p>
+                        </div>
+                    </div>
+
+                   <!-- <div class="movie-item-style-2 userrate">
+                        <img src="images/uploads/mv1.jpg" alt="">
+                        <div class="mv-item-infor">
+                            <h6><a href="#">oblivion <span>(2012)</span></a></h6>
+                            <p class="time sm-text">your rate:</p>
+                            <p class="rate"><i class="ion-android-star"></i><span>9.0</span> /10</p>
+                            <p class="time sm-text">your reviews:</p>
+                            <h6>Best Marvel movie in my opinion</h6>
+                            <p class="time sm-text">Review Date:</p>
+                            <p class="time sm">02 April 2017</p>
+                            <p>“This is by far one of my favorite movies from the MCU. The introduction of new Characters both good and bad also makes the movie more exciting. giving the characters more of a back story can also help audiences relate more to different characters better, and it connects a bond between the audience and actors or characters. Having seen the movie three times does not bother me here as it is as thrilling and exciting every time I am watching it. In other words, the movie is by far better than previous movies (and I do love everything Marvel), the plotting is splendid (they really do out do themselves in each film, there are no problems watching it more than once.”</p>
+                        </div>
+                    </div>-->
+
+                </div>
+                <div class="topbar-filter">
+
+                    <div class="pagination2">
+                        <a th:href="@{/user/favorites/{id}(id=${user.id}, page=0, size=${moviePage.size})}" th:if="${moviePage.number > 0}">First</a>
+                        <a th:href="@{/user/favorites/{id}(id=${user.id}, page=${moviePage.number - 1}, size=${moviePage.size})}" th:if="${moviePage.hasPrevious()}">Previous</a>
+                        <span th:each="i : ${#numbers.sequence(0, moviePage.totalPages - 1)}">
+                            <a th:href="@{/user/favorites/{id}(id=${user.id}, page=${i}, size=${moviePage.size})}" th:classappend="${i == moviePage.number} ? 'active'" th:text="${i + 1}"></a>
+                        </span>
+                        <a th:href="@{/user/favorites/{id}(id=${user.id}, page=${moviePage.number + 1}, size=${moviePage.size})}" th:if="${moviePage.hasNext()}">Next</a>
+                        <a th:href="@{/user/favorites/{id}(id=${user.id}, page=${moviePage.totalPages - 1}, size=${moviePage.size})}" th:if="${moviePage.number < moviePage.totalPages - 1}">Last</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer section-->
+<footer class="ht-footer">
+    <div class="container">
+        <div class="flex-parent-ft">
+            <div class="flex-child-ft item1">
+                <a href="index-2.html"><img class="logo" th:src="@{/images/logo1.png}" alt=""></a>
+                <p>5th Avenue st, manhattan<br>
+                    New York, NY 10001</p>
+                <p>Call us: <a href="#">(+01) 202 342 6789</a></p>
+            </div>
+            <div class="flex-child-ft item2">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Blockbuster</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Forums</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+            <div class="flex-child-ft item3">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
+            </div>
+            <div class="flex-child-ft item4">
+                <h4>Account</h4>
+                <ul>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Watchlist</a></li>
+                    <li><a href="#">Collections</a></li>
+                    <li><a href="#">User Guide</a></li>
+                </ul>
+            </div>
+            <div class="flex-child-ft item5">
+                <h4>Newsletter</h4>
+                <p>Subscribe to our newsletter system now <br> to get latest news from us.</p>
+                <form action="#">
+                    <input type="text" placeholder="Enter your email...">
+                </form>
+                <a href="#" class="btn">Subscribe now <i class="ion-ios-arrow-forward"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="ft-copyright">
+        <div class="ft-left">
+            <p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
+        </div>
+        <div class="backtotop">
+            <p><a href="#" id="back-to-top">Back to top <i class="ion-ios-arrow-thin-up"></i></a></p>
+        </div>
+    </div>
+</footer>
+<!-- end of footer section-->
+
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/plugins.js}"></script>
+<script th:src="@{/js/plugins2.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+</body>
+
+<!-- moviesingle11:03-->
+
+</html>

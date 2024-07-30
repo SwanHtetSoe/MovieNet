@@ -16,7 +16,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Optional;
 
 
 @Controller
@@ -39,6 +45,8 @@ public class LoginController {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    private final Path imageStorageLocation=Path.of("src\\main\\resources\\static\\img\\profile").toAbsolutePath();
 
     @GetMapping("/login")
     public String login(@RequestParam(value = "error", required = false) String error,
@@ -63,12 +71,28 @@ public class LoginController {
     }
 
     @PostMapping(value="/save")
-    public ModelAndView saveUserList(@ModelAttribute("user") UserForm user){
+    public ModelAndView saveUser(@ModelAttribute("user") UserForm userForm) {
         ModelAndView view = new ModelAndView("login");
-        Role role = new Role("User");
-        roleRepository.save(role);
-        User userAdd = new User(user.getName(),user.getEmail(),passwordEncoder.encode(user.getPassword()),role);
-        userRepository.save(userAdd);
+
+        String imageUrl = this.imageStorageLocation.resolve("default.png").toString(); // Default image URL
+        MultipartFile imageFile = userForm.getImageFile();
+        if (imageFile != null && !imageFile.isEmpty()) {
+            try {
+                String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
+                Path path = this.imageStorageLocation.resolve(fileName);
+
+                Files.createDirectories(path.getParent());
+                Files.write(path, imageFile.getBytes());
+                imageUrl = path.toString();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Optional<Role> roleOptional = roleRepository.findByType("User");
+        Role role = roleOptional.orElseGet(() -> roleRepository.save(new Role("User")));
+        User user = new User(userForm.getName(), userForm.getEmail(), passwordEncoder.encode(userForm.getPassword()), role, imageUrl);
+        userRepository.save(user);
         return view;
     }
 

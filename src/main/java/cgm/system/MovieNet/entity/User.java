@@ -9,6 +9,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -34,14 +39,26 @@ public class User {
     @JoinColumn(nullable = false, name = "role_id")
     private Role role;
 
-    public User(String name, String email, String password, Role role){
+    @Column(name = "imageUrl")
+    private String imageUrl; // Field for profile image URL
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_favorite_movies",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id")
+    )
+    private List<Movie> favoriteMovies = new ArrayList<>();
+
+    public User(String name, String email, String password, Role role, String imageUrl) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.imageUrl = imageUrl;
     }
 
-    public User(UserForm userForm){
+    public User(UserForm userForm) {
         this.id = userForm.getId();
         this.name = userForm.getName();
         this.email = userForm.getEmail();

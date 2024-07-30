@@ -85,42 +85,45 @@ public class AdminController {
 
     @GetMapping("/search")
     public String searchMovie(@RequestParam(value = "title", required = false) String title,
-                              @RequestParam(value = "genreId", required = false) Long genreId,  @RequestParam(value = "page", defaultValue = "0") int page,
-                              @RequestParam(value = "size", defaultValue = "20") int size,Model model) {
+                              @RequestParam(value = "genreId", required = false) Long genreId,
+                              @RequestParam(value = "rating", required = false) Double rating,
+                              @RequestParam(value = "page", defaultValue = "0") int page,
+                              @RequestParam(value = "size", defaultValue = "20") int size,
+                              Model model) {
 
         PageRequest pageRequest = PageRequest.of(page, size);
-
-        /* Page<Movie> moviePage = */
-    List<Genre> genres = genreRepository.findAll();
+        List<Genre> genres = genreRepository.findAll();
         model.addAttribute("adm_genres", genres);
 
-    Page<Movie> moviePage;
-    List<Movie> movies;
+        Page<Movie> moviePage;
+        List<Movie> movies;
 
-
-        if ((title == null || title.isEmpty()) && genreId == null) {
-        moviePage = movieService.findPaginated(page, size);
-    } else if (genreId == null) {
-        moviePage = movieService.searchByTitle(title, pageRequest);
-    } else if (title == null || title.isEmpty()) {
-        moviePage = movieService.searchByGenre(genreId, pageRequest);
-    } else {
-        movies = movieService.searchMovies(title, genreId);
-
-        moviePage = movieService.setPage(movies, pageRequest);; // Adjust as per your actual search method
-        model.addAttribute("adm_movies_genres", movies);
-    }
+        if ((title == null || title.isEmpty()) && genreId == null && rating == null) {
+            moviePage = movieService.findPaginated(page, size);
+        } else if (genreId == null && rating == null) {
+            moviePage = movieService.searchByTitle(title, pageRequest);
+        } else if (title == null || title.isEmpty() && rating == null) {
+            moviePage = movieService.searchByGenre(genreId, pageRequest);
+        } else if (title == null || title.isEmpty() && genreId == null) {
+            moviePage = movieService.searchByRating(rating, pageRequest);
+        } else {
+            movies = movieService.searchMovies(title, genreId, rating);
+            moviePage = movieService.setPage(movies, pageRequest);
+            model.addAttribute("adm_movies_genres", movies);
+        }
 
         model.addAttribute("adm_ttl", title); // Add title to model for Thymeleaf
         model.addAttribute("adm_gId", genreId);
+        model.addAttribute("adm_rating", rating);
 
         model.addAttribute("adm_moviePage", moviePage);
 
         return "/admin/adminHome"; // Thymeleaf template name
-}
+    }
 
-        @GetMapping("/movie/{id}")
-        public String showMovieDetails(@PathVariable("id") Long id, Model model, @RequestParam(value = "genreId", required = false) Long genreId) {
+
+    @GetMapping("/movie/{id}")
+        public String showMovieDetails(@PathVariable("id") Long id, Model model, @RequestParam(value = "genreId", required = false) Long genreId,@RequestParam int page, @RequestParam int size) {
             Movie movie = movieRepository.findById(id)
                     .orElseThrow(() -> new IllegalArgumentException("Invalid movie id: " + id));
             List<Review> reviews = reviewRepository.findByMovie(movie);
@@ -130,9 +133,13 @@ public class AdminController {
             model.addAttribute("adm_genres", genres);
             model.addAttribute("adm_gId", genreId);
             /* model.addAttribute("newReview", new Review());*/
+        model.addAttribute("page", page);
+        model.addAttribute("size", size);
 
             return "admin-movie-details"; // Thymeleaf template name
         }
+
+
 
         @PostMapping("/updatePoster/{id}")
         public String updatePoster(@PathVariable("id") Long movieId, @RequestParam("posterFile") MultipartFile posterFile, Model model, RedirectAttributes redirectAttributes) {
@@ -147,7 +154,7 @@ public class AdminController {
                 }
 
                 // Validate file size (limit to 2MB for example)
-                if (posterFile.getSize() > 2 * 1024 * 1024) {
+                if (posterFile.getSize() > 10 * 1024 * 1024) {
                     redirectAttributes.addFlashAttribute("error", "File size too large. The maximum allowed size is 2MB.");
                    /* model.addAttribute("error", "File size too large. The maximum allowed size is 2MB.");*/
                     return "redirect:/admin/movie/" + movieId;
@@ -174,7 +181,7 @@ public class AdminController {
 
         existingMovie.setTitle(movie.getTitle());
         existingMovie.setReleaseDate(movie.getReleaseDate());
-        existingMovie.setImdb_rating(movie.getImdb_rating());
+        existingMovie.setImdbRating(movie.getImdbRating());
         existingMovie.setDirector(movie.getDirector());
         existingMovie.setPlot(movie.getPlot());
         existingMovie.setGenres(genres);
@@ -205,43 +212,66 @@ public class AdminController {
 
     @PostMapping("/addNewMovie")
     public String addMovie(@RequestParam("title") String title,
-                           @RequestParam("releaseYear") Integer releaseYear,
+                           @RequestParam("releaseDate") Integer releaseYear,
                            @RequestParam("imdb_rating") Double imdbRating,
                            @RequestParam("plot") String plot,
                            @RequestParam("director") String director,
                            @RequestParam("poster") MultipartFile poster,
-                           @RequestParam("video") MultipartFile video,
+                           @RequestParam("video360") MultipartFile video360,
+                           @RequestParam("video720") MultipartFile video720,
+                           @RequestParam("video1080") MultipartFile video1080,
                            @RequestParam("genreIds") List<Long> genreIds,
                            RedirectAttributes redirectAttributes) {
+
+        // Validate required fields
         if (title.isEmpty() || plot.isEmpty() || director.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "Title, plot, and director are required fields.");
             return "redirect:/admin/addMovie";
         }
 
+        // Validate release year
         if (releaseYear < 1888 || releaseYear > 2100) {
             redirectAttributes.addFlashAttribute("error", "Please enter a valid release year.");
             return "redirect:/admin/addMovie";
         }
 
+        // Validate IMDB rating
         if (imdbRating < 0 || imdbRating > 10) {
             redirectAttributes.addFlashAttribute("error", "Please enter a valid IMDB rating (0-10).");
             return "redirect:/admin/addMovie";
         }
 
+        // Validate poster file
         if (poster.isEmpty() || !isImageFile(poster.getContentType())) {
             redirectAttributes.addFlashAttribute("error", "Please upload a valid poster file (JPG or PNG).");
             return "redirect:/admin/addMovie";
         }
 
-        if (video.isEmpty() || !isVideoFile(video.getContentType())) {
-            redirectAttributes.addFlashAttribute("error", "Please upload a valid video file.");
+        // Validate video files
+        if (video360.isEmpty() || !isVideoFile(video360.getContentType())) {
+            redirectAttributes.addFlashAttribute("error", "Please upload a valid video file for 360p.");
             return "redirect:/admin/addMovie";
         }
 
-        movieService.addMovie(title, releaseYear, imdbRating, plot, director, poster, video, genreIds);
+        if (video720.isEmpty() || !isVideoFile(video720.getContentType())) {
+            redirectAttributes.addFlashAttribute("error", "Please upload a valid video file for 720p.");
+            return "redirect:/admin/addMovie";
+        }
+
+        if (video1080.isEmpty() || !isVideoFile(video1080.getContentType())) {
+            redirectAttributes.addFlashAttribute("error", "Please upload a valid video file for 1080p.");
+            return "redirect:/admin/addMovie";
+        }
+
+        // Add movie through service
+        movieService.addMovie(title, releaseYear, imdbRating, plot, director, poster, video360, video720, video1080, genreIds);
+
+        // Redirect with success message
         redirectAttributes.addFlashAttribute("success", "Movie added successfully!");
         return "redirect:/admin/home";
     }
+
+
 
 
 

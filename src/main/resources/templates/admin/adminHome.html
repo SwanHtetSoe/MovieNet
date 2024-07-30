@@ -60,18 +60,19 @@
 			</nav>
 			<!-- top search form -->
 
-			<form th:action="@{/admin/search}" id="searchForm" class="top-search">		
-				<select name="genreId" >
-						<option value="">All Categories</option>
-						<option th:each="genre : ${adm_genres}"
-										th:value="${genre.genreId}"
-										th:text="${genre.name}"
-										th:selected="${adm_gId} == ${genre.genreId}">
-						</option>
-				</select>	
-				<input type="text" name="title" placeholder="Search by movie name"  th:value="${adm_ttl}"/>
+			<form th:action="@{/admin/search}" id="searchForm" class="top-search">
+				<select name="genreId">
+					<option value="">All Categories</option>
+					<option th:each="genre : ${adm_genres}"
+							th:value="${genre.genreId}"
+							th:text="${genre.name}"
+							th:selected="${adm_gId} == ${genre.genreId}">
+					</option>
+				</select>
+				<input type="text" name="title" placeholder="Search by movie name" th:value="${adm_ttl}"/>
+				<input type="number" name="rating" placeholder="Search by rating" min="0" max="10" step="0.1" th:value="${adm_rating}"/>
 				<button type="submit">Search</button>
-		</form>
+			</form>
 
 		</div>
 	</header><!-- END | Header -->
@@ -96,7 +97,8 @@
 				<div class="slick-multiItemSlider">
 					<div th:each="movie : ${adm_moviePage.content}" class="movie-item">
 						<div class="mv-img">
-							<a th:href="@{/admin/movie/{id}(id=${movie.movieId})}">
+							<a th:href="@{/admin/movie/{id}(id=${movie.movieId}, page=${adm_moviePage.number}, size=${adm_moviePage.size})}">
+							<!--<a th:href="@{/admin/movie/{id}(id=${movie.movieId})}">-->
 								<img th:src="@{${movie.posterUrl}}" alt="Poster" class="slide-image">
 							</a>
 						</div>
@@ -106,8 +108,10 @@
                                     <a th:text="${genre.name}"></a>
                                 </span>
 							</div>
-							<h6><a th:href="@{/admin/movie/{id}(id=${movie.movieId})}" th:text="${movie.title}"></a></h6>
-							<p><i class="ion-android-star"></i><span th:text="${movie.imdb_rating}">7.4</span> /10</p>
+							<h6>
+								<a th:href="@{/admin/movie/{id}(id=${movie.movieId}, page=${adm_moviePage.number}, size=${adm_moviePage.size})}" th:text="${movie.title}">
+								<!--<a th:href="@{/admin/movie/{id}(id=${movie.movieId})}" th:text="${movie.title}">--></a></h6>
+							<p><i class="ion-android-star"></i><span th:text="${movie.imdbRating}">7.4</span> /10</p>
 						</div>
 					</div>
 				</div>
@@ -126,12 +130,13 @@
 
 							<img th:src="@{${movie.posterUrl}}" alt="Poster" class="poster slide-image" />
 							<div class="hvr-inner">
-								<a th:href="@{/admin/movie/{id}(id=${movie.movieId})}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+								<a th:href="@{/admin/movie/{id}(id=${movie.movieId}, page=${adm_moviePage.number}, size=${adm_moviePage.size})}">
+								<!--<a th:href="@{/admin/movie/{id}(id=${movie.movieId})}">--> Read more <i class="ion-android-arrow-dropright"></i> </a>
 							</div>
 
 							<div class="mv-item-infor">
 								<h6 th:text="${movie.title}">Title</h6>
-								<p class="rate"><i class="ion-android-star"></i><span th:text="${movie.imdb_rating}">Rating</span> /10</p>
+								<p class="rate"><i class="ion-android-star"></i><span th:text="${movie.imdbRating}">Rating</span> /10</p>
 							</div>
 						</div>
 					</div>
@@ -140,24 +145,27 @@
 
 							<img th:src="@{${movie.posterUrl}}" alt="Poster" class="poster slide-image" />
 							<div class="hvr-inner">
-								<a th:href="@{/admin/movie/{id}(id=${movie.movieId})}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+								<a th:href="@{/admin/movie/{id}(id=${movie.movieId}, page=${adm_moviePage.number}, size=${adm_moviePage.size})}">
+								<!--<a th:href="@{/admin/movie/{id}(id=${movie.movieId})}">--> Read more <i class="ion-android-arrow-dropright"></i> </a>
 							</div>
 
 							<div class="mv-item-infor">
 								<h6 th:text="${movie.title}">Title</h6>
-								<p class="rate"><i class="ion-android-star"></i><span th:text="${movie.imdb_rating}">Rating</span> /10</p>
+								<p class="rate"><i class="ion-android-star"></i><span th:text="${movie.imdbRating}">Rating</span> /10</p>
 							</div>
 						</div>
 					</div>
 
 					<div class="topbar-filter">
 						<div class="pagination2">
-							<a th:href="@{/admin/home(page=${adm_moviePage.number - 1}, size=${adm_moviePage.size})}"
-								 th:if="${adm_moviePage.hasPrevious()}">Previous</a>
-							<span>Page <span th:text="${adm_moviePage.number + 1}">1</span> of <span th:text="${adm_moviePage.totalPages}">1</span></span>
-							<a th:href="@{/admin/home(page=${adm_moviePage.number + 1}, size=${adm_moviePage.size})}"
-								 th:if="${adm_moviePage.hasNext()}">Next</a>
-					</div>
+							<a th:href="@{/admin/home(page=0, size=${adm_moviePage.size})}" th:if="${adm_moviePage.number > 0}">First</a>
+							<a th:href="@{/admin/home(page=${adm_moviePage.number - 1}, size=${adm_moviePage.size})}" th:if="${adm_moviePage.hasPrevious()}">Previous</a>
+							<span th:each="i : ${#numbers.sequence(0, adm_moviePage.totalPages - 1)}">
+								<a th:href="@{/admin/home(page=${i}, size=${adm_moviePage.size})}" th:classappend="${i == adm_moviePage.number} ? 'active'" th:text="${i + 1}"></a>
+							</span>
+							<a th:href="@{/admin/home(page=${adm_moviePage.number + 1}, size=${adm_moviePage.size})}" th:if="${adm_moviePage.hasNext()}">Next</a>
+							<a th:href="@{/admin/home(page=${adm_moviePage.totalPages - 1}, size=${adm_moviePage.size})}" th:if="${adm_moviePage.number < adm_moviePage.totalPages - 1}">Last</a>
+						</div>
 					</div>
 				</div>
 			</div>

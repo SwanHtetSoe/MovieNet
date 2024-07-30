@@ -2,8 +2,10 @@ package cgm.system.MovieNet.service.impl;
 
 import cgm.system.MovieNet.entity.Genre;
 import cgm.system.MovieNet.entity.Movie;
+import cgm.system.MovieNet.entity.User;
 import cgm.system.MovieNet.repository.MovieRepository;
 import cgm.system.MovieNet.repository.ReviewRepository;
+import cgm.system.MovieNet.repository.UserRepository;
 import cgm.system.MovieNet.service.GenreService;
 import cgm.system.MovieNet.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,9 @@ public class MovieServieImpl implements MovieService {
     @Autowired
     private GenreService genreService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     private final Path imageStorageLocation=Path.of("src\\main\\resources\\static\\img\\poster").toAbsolutePath();
     private final Path fileStorageLocation= Path.of("src\\main\\resources\\static\\file\\movie").toAbsolutePath();
 
@@ -52,8 +57,13 @@ public class MovieServieImpl implements MovieService {
                 .orElseThrow(() -> new RuntimeException("Movie not found")); // Handle not found case as per your application logic
     }
 
-    public List<Movie> searchMovies(String title, Long genreId) {
-        return movieRepository.searchMovies(title, genreId);
+    @Override
+    public Page<Movie> searchByRating(Double rating, Pageable pageable) {
+        return movieRepository.findByImdbRatingAndDeletedFalse(rating, pageable);
+    }
+
+    public List<Movie> searchMovies(String title, Long genreId, Double rating) {
+        return movieRepository.searchMovies(title, genreId, rating);
     }
 
     public Page<Movie> setPage(List<Movie> movies, Pageable pageable) {
@@ -86,14 +96,17 @@ public class MovieServieImpl implements MovieService {
 
     @Override
     public void addMovie(String title, Integer releaseDate, Double imdbRating, String plot,
-                         String director, MultipartFile poster, MultipartFile video, List<Long> genreIds) {
+                         String director, MultipartFile poster, MultipartFile video360,
+                         MultipartFile video720, MultipartFile video1080, List<Long> genreIds) {
 
         // Save poster and video files
         String posterUrl = savePosterFile(poster);
-        String videoUrl = saveFile(video);
+        String videoUrl360 = saveFile(video360);
+        String videoUrl720 = saveFile(video720);
+        String videoUrl1080 = saveFile(video1080);
 
         // Create new movie object
-        Movie movie = new Movie(title, releaseDate, plot, imdbRating, director, posterUrl, videoUrl);
+        Movie movie = new Movie(title, releaseDate, plot, imdbRating, director, posterUrl, videoUrl360, videoUrl720, videoUrl1080);
 
         // Add genres to the movie
         List<Genre> genres = genreService.findGenresByIds(genreIds);
@@ -102,6 +115,7 @@ public class MovieServieImpl implements MovieService {
         // Save movie
         movieRepository.save(movie);
     }
+
 
     private String saveFile(MultipartFile file) {
         String fileName = UUID.randomUUID().toString() + "_" + StringUtils.cleanPath(file.getOriginalFilename());
@@ -145,4 +159,44 @@ public class MovieServieImpl implements MovieService {
             throw new RuntimeException("Could not store file " + fileName + ". Please try again!", ex);
         }
     }
+
+    @Override
+    public List<Movie> getFavoriteMoviesByUserId(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        return user.getFavoriteMovies();
+    }
+
+    @Override
+    public Page<Movie> getFavoriteMoviesByUserIdForPage(Long userId, Pageable pageable) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        List<Movie> favoriteMovies = user.getFavoriteMovies();
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), favoriteMovies.size());
+        return new PageImpl<>(favoriteMovies.subList(start, end), pageable, favoriteMovies.size());
+    }
+
+    @Override
+    public Page<Movie> getDownloadedMoviesByUserNameForPage(String username, Pageable pageable) {
+
+        List<Movie> downloadedMovies = movieRepository.findByDownloadedTrueAndUserUsername(username);
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), downloadedMovies.size());
+        return new PageImpl<>(downloadedMovies.subList(start, end), pageable, downloadedMovies.size());
+    }
+
+    public List<Movie> findDownloadedMoviesByUser(String username) {
+        return movieRepository.findByDownloadedTrueAndUserUsername(username);
+    }
+
+    public void save(Movie movie) {
+        movieRepository.save(movie);
+    }
+
+    public Movie findById(Long movieId) {
+        return movieRepository.findById(movieId).orElseThrow(() -> new RuntimeException("Movie not found"));
+    }
+
+
+
+
 }

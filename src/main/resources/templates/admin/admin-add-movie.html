@@ -16,14 +16,17 @@
         <span th:text="${success}"></span>
     </div>
     <form th:action="@{/admin/addNewMovie}" method="post" enctype="multipart/form-data">
+        <!-- CSRF Token -->
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
         <div class="mb-3">
             <label for="title" class="form-label">Title:</label>
             <input type="text" id="title" name="title" class="form-control" required>
         </div>
 
         <div class="mb-3">
-            <label for="releaseYear" class="form-label">Release Year:</label>
-            <input type="text" id="releaseYear" name="releaseYear" class="form-control" pattern="\d{4}" title="Please enter a valid four-digit year" required>
+            <label for="releaseDate" class="form-label">Release Year:</label>
+            <input type="text" id="releaseDate" name="releaseDate" class="form-control" pattern="\d{4}" title="Please enter a valid four-digit year" required>
         </div>
 
         <div class="mb-3">
@@ -47,8 +50,18 @@
         </div>
 
         <div class="mb-3">
-            <label for="video" class="form-label">Video:</label>
-            <input type="file" id="video" name="video" class="form-control" accept="video/*" required>
+            <label for="video360" class="form-label">Video (360p):</label>
+            <input type="file" id="video360" name="video360" class="form-control" accept="video/*" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="video720" class="form-label">Video (720p):</label>
+            <input type="file" id="video720" name="video720" class="form-control" accept="video/*">
+        </div>
+
+        <div class="mb-3">
+            <label for="video1080" class="form-label">Video (1080p):</label>
+            <input type="file" id="video1080" name="video1080" class="form-control" accept="video/*">
         </div>
 
         <div class="mb-3">
