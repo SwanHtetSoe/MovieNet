@@ -12,7 +12,7 @@
 
 <head>
     <!-- Basic need -->
-    <title>Open Pediatrics</title>
+    <title>Favorite movies</title>
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -109,7 +109,7 @@
                     <div class="user-fav">
                         <p>Account Details</p>
                         <ul>
-                            <li><a th:href="@{/user/profile}">Profile</a></li>
+                            <li><a th:href="@{/user/profile/{id}(id=${user.id})}">Profile</a></li>
                             <li class="active"><a th:href="@{/user/favorites}">Favorite movies</a></li>
                             <li><a th:href="@{/user/downloaded/{id}(id=${user.id})}">Downloaded movies</a></li>
                         </ul>
@@ -140,7 +140,7 @@
                     <div th:each="movie : ${favoriteMovies}" class="movie-item-style-2">
                         <img th:src="@{${movie.posterUrl}}" alt="Movie Poster">
                         <div class="mv-item-infor">
-                            <h6><a th:href="@{/user/movies/{id}(id=${movie.movieId})}"><span th:text="${movie.title}"></span> <span th:text="(${movie.releaseDate})"></span></a></h6>
+                            <h6><a th:href="@{/user/movie/{id}(id=${movie.movieId})}"><span th:text="${movie.title}"></span> <span th:text="(${movie.releaseDate})"></span></a></h6>
                             <p class="rate"><i class="ion-android-star"></i><span th:text="${movie.imdbRating}"></span> /10</p>
                             <p class="describe" th:text="${movie.plot}">Movie Plot</p>
                         </div>

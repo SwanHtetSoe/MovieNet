@@ -14,11 +14,11 @@ public interface UserService {
 
     public User getCurrentUser();
 
-    public void updateUserProfile(String name,String email);
+    public void updateUserProfile(Long userId,String name,String email);
 
-    public void changePassword(String oldPassword, String newPassword, String confirmNewPassword);
+    public void changePassword(Long userId,String oldPassword, String newPassword, String confirmNewPassword);
 
-    public boolean validateOldPassword(String userName, String oldPassword);
+    public boolean validateOldPassword(Long userId, String oldPassword);
 
     public String saveProfileImage(MultipartFile file);
 

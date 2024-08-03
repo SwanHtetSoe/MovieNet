@@ -51,6 +51,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    public static Long userId;
+
+
     @GetMapping("/home")
     public String userHome(
             @RequestParam(value = "page", defaultValue = "0") int page,
@@ -60,7 +63,11 @@ public class UserController {
         model.addAttribute("moviePage", moviePage);
         List<Genre> genres = genreRepository.findAll();
         model.addAttribute("genres", genres);
-
+        if(this.userId == null){
+            this.userId =userRepository.findByName(SecurityContextHolder.getContext().getAuthentication().getName()).getId();
+        }
+        model.addAttribute("user", userRepository.findById(this.userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user id: " + userId)));
         return "/user/userHome";
     }
 
@@ -150,88 +157,93 @@ public class UserController {
         return "redirect:/user/movie/" + id;
     }
 
-    @GetMapping("/profile")
-    public String userProfile(Model model) {
-        User currentUser = userService.getCurrentUser();
+    @GetMapping("/profile/{id}")
+    public String userProfile(@PathVariable("id") Long userId,Model model) {
+
+        User currentUser = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+
         model.addAttribute("user", currentUser);
         return "/user/userProfile";
     }
 
-    @PostMapping("/profile")
-    public String updateUserProfile(@RequestParam("username") String userName,
+    @PostMapping("/profile/{id}")
+    public String updateUserProfile(@PathVariable("id") Long userId,
+                                    @RequestParam("username") String userName,
                                     @RequestParam("email") String email,
                                     RedirectAttributes redirectAttributes
                                    ) {
 
         if (userName == null || userName.trim().isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "Username is required");
-            return "redirect:/user/profile";
+            return "redirect:/user/profile/" + userId;
         }
 
         if (email == null || email.trim().isEmpty() || !email.matches("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")) {
             redirectAttributes.addFlashAttribute("error", "A valid email is required");
-            return "redirect:/user/profile";
+            return "redirect:/user/profile/" + userId;
         }
 
-        userService.updateUserProfile(userName,email);
+        userService.updateUserProfile(userId,userName,email);
         redirectAttributes.addFlashAttribute("success", "Profile updated successfully");
-        return "redirect:/user/profile";
+        return "redirect:/user/profile/" + userId;
     }
 
-    @PostMapping("/profile/changePassword")
-    public String changePassword(@RequestParam("oldPassword") String oldPassword,
+    @PostMapping("/profile/changePassword/{id}")
+    public String changePassword(@PathVariable("id") Long userId,
+                                 @RequestParam("oldPassword") String oldPassword,
                                  @RequestParam("newPassword") String newPassword,
                                  @RequestParam("confirmNewPassword") String confirmNewPassword,
                                  RedirectAttributes redirectAttributes) {
         if (oldPassword == null || oldPassword.trim().isEmpty()) {
             redirectAttributes.addFlashAttribute("errorPassword", "Old password is required");
-            return "redirect:/user/profile";
+            return "redirect:/user/profile/" + userId;
         }
 
         if (newPassword == null || newPassword.trim().isEmpty()) {
             redirectAttributes.addFlashAttribute("errorPassword", "New password is required");
-            return "redirect:/user/profile";
+            return "redirect:/user/profile/" + userId;
         }
 
         if (!newPassword.equals(confirmNewPassword)) {
             redirectAttributes.addFlashAttribute("errorPassword", "New password and confirm new password do not match");
-            return "redirect:/user/profile";
+            return "redirect:/user/profile/" + userId;
         }
 
-        String username = userService.getCurrentUser().getName();
-        if (!userService.validateOldPassword(username, oldPassword)) {
+
+        if (!userService.validateOldPassword(userId, oldPassword)) {
             redirectAttributes.addFlashAttribute("errorPassword", "Old password is incorrect");
-            return "redirect:/user/profile";
+            return "redirect:/user/profile/" + userId;
         }
-        userService.changePassword(oldPassword, newPassword, confirmNewPassword);
+        userService.changePassword(userId,oldPassword, newPassword, confirmNewPassword);
         redirectAttributes.addFlashAttribute("successPassword", "Password changed successfully");
-        return "redirect:/user/profile";
+        return "redirect:/user/profile/" + userId;
     }
 
     @PostMapping("/changeAvatar/{id}")
-    public String updatePoster(@PathVariable("id") Long movieId, @RequestParam("imageUrl") MultipartFile posterFile, Model model, RedirectAttributes redirectAttributes) {
-        User user = userService.getCurrentUser();
+    public String updatePoster(@PathVariable("id") Long userId, @RequestParam("imageUrl") MultipartFile posterFile, Model model, RedirectAttributes redirectAttributes) {
+        /*User user = userService.getCurrentUser();*/
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         if (!posterFile.isEmpty()) {
             // Validate file type
             String contentType = posterFile.getContentType();
             if (!isImageFile(contentType)) {
                 redirectAttributes.addFlashAttribute("errorImage", "Invalid file type. Only JPG and PNG are allowed.");
                 /*model.addAttribute("error", "Invalid file type. Only JPG and PNG are allowed.");*/
-                return "redirect:/user/profile";
+                return "redirect:/user/profile/" +userId;
             }
 
             // Validate file size (limit to 2MB for example)
             if (posterFile.getSize() > 10 * 1024 * 1024) {
                 redirectAttributes.addFlashAttribute("errorImage", "File size too large. The maximum allowed size is 10MB.");
                 /* model.addAttribute("error", "File size too large. The maximum allowed size is 2MB.");*/
-                return "redirect:/user/profile";
+                return "redirect:/user/profile/" +userId;
             }
             String posterUrl = userService.saveProfileImage(posterFile);
             user.setImageUrl(posterUrl);
             userRepository.save(user);
             redirectAttributes.addFlashAttribute("successImage", "Poster updated successfully!");
         }
-        return "redirect:/user/profile";
+        return "redirect:/user/profile/" +userId;
     }
 
     private boolean isImageFile(String contentType) {
@@ -240,15 +252,17 @@ public class UserController {
 
     @PostMapping("/favorites/add/{movieId}")
     public String addFavorite(@PathVariable Long movieId, Principal principal) {
-        String username = principal.getName();
-        userService.addFavoriteMovie(username, movieId);
+       /* String username = principal.getName();*/
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        userService.addFavoriteMovie(user.getName(), movieId);
         return "redirect:/user/movie/" + movieId;
     }
 
     @PostMapping("/favorites/remove/{movieId}")
     public String removeFavorite(@PathVariable Long movieId, Principal principal) {
-        String username = principal.getName();
-        userService.removeFavoriteMovie(username, movieId);
+       /* String username = principal.getName(); */
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        userService.removeFavoriteMovie(user.getName(), movieId);
         return "redirect:/user/movie/" + movieId;
     }
 
@@ -256,8 +270,9 @@ public class UserController {
 
     @GetMapping("/favorites/{id}")
     public String getUserFavorites(@PathVariable("id") Long userId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size,Model model,Principal principal) {
-        String username = principal.getName();
-        User user = userService.getUserByUserName(username);
+        /*String username = principal.getName();
+        User user = userService.getUserByUserName(username);*/
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         model.addAttribute("user", user);
 
         Page<Movie> favoriteMoviesPage = movieService.getFavoriteMoviesByUserIdForPage(userId, PageRequest.of(page, size));
@@ -271,14 +286,15 @@ public class UserController {
 
     @GetMapping("/downloaded/{id}")
     public String getDownloaded(@PathVariable("id") Long userId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size,Model model,Principal principal) {
-        String username = principal.getName();
-        User user = userService.getUserByUserName(username);
+        /*String username = principal.getName();
+        User user = userService.getUserByUserName(username);*/
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         model.addAttribute("user", user);
 
-        Page<Movie> downloadedMoviesPage = movieService.getDownloadedMoviesByUserNameForPage(username, PageRequest.of(page, size));
+        Page<Movie> downloadedMoviesPage = movieService.getDownloadedMoviesByUserNameForPage(user.getName(), PageRequest.of(page, size));
         model.addAttribute("moviePage", downloadedMoviesPage);
 
-        List<Movie> downloadedMovies = movieService.findDownloadedMoviesByUser(username);
+        List<Movie> downloadedMovies = movieService.findDownloadedMoviesByUser(user.getName());
         model.addAttribute("downloadedMovies", downloadedMovies);
 
 

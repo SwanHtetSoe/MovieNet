@@ -12,7 +12,7 @@
 
 <head>
     <!-- Basic need -->
-    <title>Open Pediatrics</title>
+    <title>User Profile</title>
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -107,7 +107,8 @@
                     <div class="user-fav">
                         <p>Account Details</p>
                         <ul>
-                            <li  class="active"><a th:href="@{/user/profile}">Profile</a></li>
+                            <li  class="active"><a th:href="@{/user/profile/{id}(id=${user.id})}">Profile</a></li>
+
 
                             <li><a th:href="@{/user/favorites/{id}(id=${user.id})}">Favorite movies</a></li>
 
@@ -124,8 +125,9 @@
                 </div>
             </div>
             <div class="col-md-9 col-sm-12 col-xs-12">
+                
                 <div class="form-style-1 user-pro" action="#">
-                    <form th:action="@{/user/profile}" method="post" class="user">
+                    <form th:action="@{/user/profile/{id}(id=${user.id})}" method="post" class="user">
                         <h4>01. Profile details</h4>
                         <div class="row">
                             <div th:if="${error}" class="alert alert-danger" role="alert">
@@ -153,7 +155,7 @@
                             </div>
                         </div>
                     </form>
-                    <form th:action="@{/user/profile/changePassword}" method="post" class="password">
+                    <form th:action="@{/user/profile/changePassword/{id}(id=${user.id})}" method="post" class="password">
                         <h4>02. Change password</h4>
                         <div class="row">
                             <div th:if="${errorPassword}" class="alert alert-danger" role="alert">
@@ -183,7 +185,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-2">
-                                <input class="submit" type="submit" value="Change Password">
+                                <input class="submit" type="submit" value="Change">
                             </div>
                         </div>
                     </form>

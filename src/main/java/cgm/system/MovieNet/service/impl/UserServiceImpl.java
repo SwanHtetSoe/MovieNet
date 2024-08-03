@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -52,35 +53,41 @@ public class UserServiceImpl implements UserService {
 
     public User getCurrentUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         String username = null;
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
         } else {
             username = principal.toString();
         }
-        return userRepository.findByName(username);
+        User user = userRepository.findByName(username);
+        if (user == null) {
+            System.out.println("User not found for username: " + username);
+        }
+        return user;
     }
 
-    public void updateUserProfile(String name,String email) {
-        User currentUser = getCurrentUser();
+    public void updateUserProfile(Long userId,String name,String email) {
+        User currentUser = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+
         currentUser.setEmail(email);
         currentUser.setName(name);
 
         userRepository.save(currentUser);
     }
 
-    public void changePassword(String oldPassword, String newPassword, String confirmNewPassword) {
-        User currentUser = getCurrentUser();
+    public void changePassword(Long userId,String oldPassword, String newPassword, String confirmNewPassword) {
+        User currentUser = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         if (passwordEncoder.matches(oldPassword, currentUser.getPassword()) && newPassword.equals(confirmNewPassword)) {
             currentUser.setPassword(passwordEncoder.encode(newPassword));
             userRepository.save(currentUser);
         }
     }
 
-    public boolean validateOldPassword(String userName, String oldPassword) {
+    public boolean validateOldPassword(Long userId, String oldPassword) {
 
-        User user = userRepository.findByName(userName);
-        return user != null && user.getPassword().equals(oldPassword);
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        return passwordEncoder.matches(oldPassword, user.getPassword());
     }
 
     public String saveProfileImage(MultipartFile file) {

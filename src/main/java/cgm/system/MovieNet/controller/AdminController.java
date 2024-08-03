@@ -65,6 +65,8 @@ public class AdminController {
 
     private final Path fileStorageLocation;
 
+    public static Long admin_userId;
+
     public AdminController(@Value("${file.upload-dir}") String uploadDir) {
         this.fileStorageLocation = Paths.get(uploadDir).toAbsolutePath().normalize();
 
@@ -86,6 +88,14 @@ public class AdminController {
         model.addAttribute("adm_moviePage", moviePage);
         List<Genre> genres = genreRepository.findAll();
         model.addAttribute("adm_genres", genres);
+        /*Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByName(authentication.getName());
+        model.addAttribute("user", user);*/
+        if(this.admin_userId == null){
+            this.admin_userId  =userRepository.findByName(SecurityContextHolder.getContext().getAuthentication().getName()).getId();
+        }
+        model.addAttribute("user", userRepository.findById(this.admin_userId )
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user id: " + admin_userId )));
 
         return "/admin/adminHome";
     }
@@ -132,7 +142,10 @@ public class AdminController {
 
 
     @GetMapping("/movie/{id}")
-        public String showMovieDetails(@PathVariable("id") Long id, Model model, @RequestParam(value = "genreId", required = false) Long genreId,@RequestParam int page, @RequestParam int size) {
+        public String showMovieDetails(@PathVariable("id") Long id, Model model,
+                                       @RequestParam(value = "genreId", required = false) Long genreId,
+                                       @RequestParam(value = "page", defaultValue = "0") int page,
+                                       @RequestParam(value = "size", defaultValue = "20") int size) {
             Movie movie = movieRepository.findById(id)
                     .orElseThrow(() -> new IllegalArgumentException("Invalid movie id: " + id));
             List<Review> reviews = reviewRepository.findByMovie(movie);
@@ -157,21 +170,21 @@ public class AdminController {
                 // Validate file type
                 String contentType = posterFile.getContentType();
                 if (!isImageFile(contentType)) {
-                    redirectAttributes.addFlashAttribute("error", "Invalid file type. Only JPG and PNG are allowed.");
+                    redirectAttributes.addFlashAttribute("errorPoster", "Invalid file type. Only JPG and PNG are allowed.");
                     /*model.addAttribute("error", "Invalid file type. Only JPG and PNG are allowed.");*/
                     return "redirect:/admin/movie/" + movieId;
                 }
 
                 // Validate file size (limit to 2MB for example)
                 if (posterFile.getSize() > 10 * 1024 * 1024) {
-                    redirectAttributes.addFlashAttribute("error", "File size too large. The maximum allowed size is 2MB.");
+                    redirectAttributes.addFlashAttribute("errorPoster", "File size too large. The maximum allowed size is 2MB.");
                    /* model.addAttribute("error", "File size too large. The maximum allowed size is 2MB.");*/
                     return "redirect:/admin/movie/" + movieId;
                 }
                 String posterUrl = movieService.savePosterFile(posterFile);
                 movie.setPosterUrl(posterUrl);
                 movieRepository.save(movie);
-                redirectAttributes.addFlashAttribute("success", "Poster updated successfully!");
+                redirectAttributes.addFlashAttribute("successPoster", "Poster updated successfully!");
             }
             return "redirect:/admin/movie/" + movieId;
         }
@@ -196,7 +209,7 @@ public class AdminController {
         existingMovie.setGenres(genres);
 
         movieRepository.save(existingMovie);
-        redirectAttributes.addFlashAttribute("success", "Movie updated successfully!");
+        redirectAttributes.addFlashAttribute("successMovie", "Movie updated successfully!");
         model.addAttribute("adm_gId", genreIds);
 
         return "redirect:/admin/movie/" + id; // Redirect to the updated movie's details page
@@ -280,62 +293,65 @@ public class AdminController {
         return "redirect:/admin/home";
     }
 
-    @GetMapping("/profile")
-    public String userProfile(Model model) {
-        User currentUser = userService.getCurrentUser();
+    @GetMapping("/profile/{id}")
+    public String userProfile(@PathVariable("id") Long userId,Model model) {
+        User currentUser = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         model.addAttribute("user", currentUser);
         return "/admin/adminProfile";
     }
 
-    @PostMapping("/profile")
-    public String updateUserProfile(@RequestParam("username") String userName,
+
+    @PostMapping("/profile/{id}")
+    public String updateUserProfile(@PathVariable("id") Long userId,
+                                    @RequestParam("username") String userName,
                                     @RequestParam("email") String email,
                                     RedirectAttributes redirectAttributes
     ) {
 
         if (userName == null || userName.trim().isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "Username is required");
-            return "redirect:/admin/profile";
+            return "redirect:/admin/profile/" + userId;
         }
 
         if (email == null || email.trim().isEmpty() || !email.matches("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")) {
             redirectAttributes.addFlashAttribute("error", "A valid email is required");
-            return "redirect:/admin/profile";
+            return "redirect:/admin/profile/" + userId;
         }
 
-        userService.updateUserProfile(userName,email);
+        userService.updateUserProfile(userId,userName,email);
         redirectAttributes.addFlashAttribute("success", "Profile updated successfully");
-        return "redirect:/admin/profile";
+        return "redirect:/admin/profile/" + userId;
     }
 
-    @PostMapping("/profile/changePassword")
-    public String changePassword(@RequestParam("oldPassword") String oldPassword,
+    @PostMapping("/profile/changePassword/{id}")
+    public String changePassword(@PathVariable("id") Long userId,
+                                 @RequestParam("oldPassword") String oldPassword,
                                  @RequestParam("newPassword") String newPassword,
                                  @RequestParam("confirmNewPassword") String confirmNewPassword,
                                  RedirectAttributes redirectAttributes) {
         if (oldPassword == null || oldPassword.trim().isEmpty()) {
             redirectAttributes.addFlashAttribute("errorPassword", "Old password is required");
-            return "redirect:/admin/profile";
+            return "redirect:/admin/profile/" + userId;
         }
 
         if (newPassword == null || newPassword.trim().isEmpty()) {
             redirectAttributes.addFlashAttribute("errorPassword", "New password is required");
-            return "redirect:/admin/profile";
+            return "redirect:/admin/profile/" + userId;
         }
 
         if (!newPassword.equals(confirmNewPassword)) {
             redirectAttributes.addFlashAttribute("errorPassword", "New password and confirm new password do not match");
-            return "redirect:/admin/profile";
+            return "redirect:/admin/profile/" + userId;
         }
 
-        String username = userService.getCurrentUser().getName();
-        if (!userService.validateOldPassword(username, oldPassword)) {
+
+        if (!userService.validateOldPassword(userId, oldPassword)) {
             redirectAttributes.addFlashAttribute("errorPassword", "Old password is incorrect");
-            return "redirect:/admin/profile";
+            return "redirect:/admin/profile/" + userId;
         }
-        userService.changePassword(oldPassword, newPassword, confirmNewPassword);
+        userService.changePassword(userId,oldPassword, newPassword, confirmNewPassword);
         redirectAttributes.addFlashAttribute("successPassword", "Password changed successfully");
-        return "redirect:/admin/profile";
+        return "redirect:/admin/profile/" + userId;
     }
 
     @PostMapping("/changeAvatar/{id}")
@@ -347,21 +363,21 @@ public class AdminController {
             if (!isImageFile(contentType)) {
                 redirectAttributes.addFlashAttribute("errorImage", "Invalid file type. Only JPG and PNG are allowed.");
                 /*model.addAttribute("error", "Invalid file type. Only JPG and PNG are allowed.");*/
-                return "redirect:/admin/profile";
+                return "redirect:/admin/profile/" + movieId;
             }
 
             // Validate file size (limit to 2MB for example)
             if (posterFile.getSize() > 10 * 1024 * 1024) {
                 redirectAttributes.addFlashAttribute("errorImage", "File size too large. The maximum allowed size is 10MB.");
                 /* model.addAttribute("error", "File size too large. The maximum allowed size is 2MB.");*/
-                return "redirect:/admin/profile";
+                return "redirect:/admin/profile/" + movieId;
             }
             String posterUrl = userService.saveProfileImage(posterFile);
             user.setImageUrl(posterUrl);
             userRepository.save(user);
             redirectAttributes.addFlashAttribute("successImage", "Poster updated successfully!");
         }
-        return "redirect:/admin/profile";
+        return "redirect:/admin/profile/" + movieId;
     }
 
 

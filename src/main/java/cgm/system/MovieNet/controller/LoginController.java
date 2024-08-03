@@ -151,6 +151,9 @@ public class LoginController {
 
     @GetMapping("/logout")
     public String logout() {
+
+        AdminController.admin_userId = null;
+        UserController.userId = null;
         return "redirect:/login?logout"; // Handle the logout redirect
     }
 

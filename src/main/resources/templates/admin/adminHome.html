@@ -53,7 +53,7 @@
 					<ul class="nav navbar-nav flex-child-menu menu-right">
 						<!--<li class="loginLink"><a href="#">LOG In</a></li>-->
 						<li class="dropdown first">
-							<a th:href="@{/admin/profile}" class="btn btn-default">user profile</a>
+							<a th:href="@{/admin/profile/{id}(id=${user.id})}" class="btn btn-default">user profile</a>
 						</li>
 						<li class="btn"><a th:href="@{/admin/addMovie}">Add New Movie</a></li>
 						<li class="btn"> <a th:href="@{/logout}">Logout</a></li>
@@ -73,23 +73,24 @@
 					</option>
 				</select>
 				<input type="text" name="title" placeholder="Search by movie name" th:value="${adm_ttl}"/>
-				<input type="number" name="rating" placeholder="Search by rating" min="0" max="10" step="0.1" th:value="${adm_rating}"/>
+				<input type="number" name="rating" placeholder="Search by rating" min="0" max="10" step="0.1" th:value="${adm_rating}" class="no-spinner"/>
 				<button type="submit">Search</button>
 			</form>
 
 		</div>
 	</header><!-- END | Header -->
-	<div th:if="${success}" class="alert alert-success" role="alert">
-		<span th:text="${success}"></span>
-	</div>
-	<div th:if="${error}" class="alert alert-danger" role="alert">
-		<span th:text="${error}"></span>
-	</div>
+
 
 
 	<div class="slider movie-items">
 		<div class="container">
 			<div class="row">
+                <div th:if="${success}" class="alert alert-success" role="alert">
+                    <span th:text="${success}"></span>
+                </div>
+                <div th:if="${error}" class="alert alert-danger" role="alert">
+                    <span th:text="${error}"></span>
+                </div>
 				<div class="social-link">
 					<p>Follow us: </p>
 					<a href="#"><i class="ion-social-facebook"></i></a>

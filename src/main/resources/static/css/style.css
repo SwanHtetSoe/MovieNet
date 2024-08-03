@@ -8293,3 +8293,33 @@ height: 300px;
 .col-md-8-width{
   width: 66.66666667%;
 }
+
+.no-spinner::-webkit-inner-spin-button,
+  .no-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .no-spinner {
+    -moz-appearance: textfield;
+  }
+
+  .plot-width{
+  width:80%;
+  }
+
+  .bg-height{
+  height: 168px;
+  }
+
+  .txtarea-height{
+  height: 200px;
+  }
+
+  .txtarea-width{
+  width: 400px;
+  }
+
+  .add-review-color{
+  color: #abb7c4;
+  }

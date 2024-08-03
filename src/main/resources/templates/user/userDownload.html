@@ -12,7 +12,7 @@
 
 <head>
     <!-- Basic need -->
-    <title>Open Pediatrics</title>
+    <title>Downloaded movies</title>
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -109,7 +109,7 @@
                     <div class="user-fav">
                         <p>Account Details</p>
                         <ul>
-                            <li><a th:href="@{/user/profile}">Profile</a></li>
+                            <li><a th:href="@{/user/profile/{id}(id=${user.id})}">Profile</a></li>
                             <li><a th:href="@{/user/favorites/{id}(id=${user.id})}">Favorite movies</a></li>
                             <li class="active"><a th:href="@{/user/downloaded/{id}(id=${user.id})}">Download movies</a></li>
                         </ul>
@@ -141,7 +141,8 @@
                         <div th:each="movie : ${downloadedMovies}" class="movie-item-style-2">
                             <img th:src="@{${movie.posterUrl}}" alt="Movie Poster">
                             <div class="mv-item-infor">
-                                <h6><a th:href="@{/movies/{id}(id=${movie.movieId})}" th:text="${movie.title}">Movie Title</a></h6>
+                                <h6><a th:href="@{/user/movie/{id}(id=${movie.movieId})}" th:text="${movie.title}">Movie Title</a></h6>
+
                                 <p class="rate"><i class="ion-android-star"></i><span th:text="${movie.imdbRating}">Rating</span> /10</p>
                                 <p class="describe" th:text="${movie.plot}">Movie Plot</p>
                             </div>

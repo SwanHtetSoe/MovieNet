@@ -12,7 +12,7 @@
 
 <head>
 	<!-- Basic need -->
-	<title>Open Pediatrics</title>
+	<title>Movie details</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
@@ -88,6 +88,7 @@
 								<!-- Download 360p -->
 								<form th:action="@{/downloadFile/{movieId}(movieId=${movie.movieId})}" method="get">
 									<input type="hidden" name="fileUrl" th:value="${movie.fileUrl360}" />
+									<input type="hidden" name="quality" value="360" />
 									<button type="submit" class="item item-1 yellowbtn">Download 360p</button>
 								</form>
 								<form th:action="@{/downloadFile/{movieId}(movieId=${movie.movieId})}" method="get">
@@ -164,7 +165,7 @@
 									<div id="overview" class="tab active">
 										<div class="row">
 
-											<div class="col-md-4 col-xs-12 col-sm-12">
+											<div class="col-md-4 col-xs-12 col-sm-12 plot-width">
 												<div class="sb-it">
 													<h6>Director: </h6>
 													<p><span th:text="${movie.director}">Director Name</span></p>
@@ -181,7 +182,7 @@
 
 												<div class="sb-it">
 													<h6>Plot:</h6>
-													<p><span th:text="${movie.plot}">Movie Plot</span></p>
+													<p><span  th:text="${movie.plot}">Movie Plot</span></p>
 												</div>
 
 												<div class="ads">
@@ -218,12 +219,12 @@
 															<input type="hidden" th:field="*{movie}" th:value="${movie}" />
 															<input type="hidden" id="userName" name="userName" th:field="*{user.name}" />
 															<div>
-																<label for="rating">Rating:</label>
-																<input type="number" id="rating" name="rating" th:field="*{rating}" min="1" max="5" step="0.1" required />
+																<label class="add-review-color" for="rating">Rating:</label>
+																<input type="number" id="rating" name="rating" th:field="*{rating}" min="1" max="5" step="1" required />
 															</div>
 															<div>
-																<label for="reviewText">Review:</label>
-																<textarea id="reviewText" name="reviewText" th:field="*{reviewText}" required></textarea>
+																<label class="add-review-color" for="reviewText">Review:</label>
+																<textarea id="reviewText" class="txtarea-height txtarea-width" name="reviewText" th:field="*{reviewText}" required></textarea>
 															</div>
 															<button type="submit">Submit Review</button>
 														</form>
