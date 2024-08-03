@@ -34,17 +34,28 @@ public class EmailSendServiceImpl implements EmailSendService {
         reset.setUser(user);
         repository.save(reset);*/
         passwordResetService.createPasswordResetTokenForUser(user, token);
-        SimpleMailMessage message = getMessage(email, token);
+        SimpleMailMessage message = getMessage(user,email, token);
         mailSender.send(message);
     }
 
-    private SimpleMailMessage getMessage(String email, String token){
+    private SimpleMailMessage getMessage(User user,String email, String token){
         SimpleMailMessage message = new SimpleMailMessage();
         String subject="Password Reset";
-        String Url = "http://localhost:9090/reset_password?token=" + token;
+        /*String Url = "http://localhost:9090/reset_password?token=" + token;
         String body= "This is password Reset Link \n" +
                 "Click Below Link to reset your password \n" +
-                Url;
+                Url;*/
+
+        // Create the password reset URL
+        String resetUrl = "http://localhost:8080/reset_password?token=" + token;
+
+        // Create the email message content
+        String body = "Hello " + user.getName() + ",\n\n" +
+                "You have requested to reset your password. Please click the link below to reset your password:\n\n" +
+                resetUrl + "\n\n" +
+                "If you did not request this, please ignore this email.\n\n" +
+                "Thank you";
+
         message.setFrom("swanhtetsoe36@gmail.com");
         message.setTo(email);
         message.setSubject(subject);

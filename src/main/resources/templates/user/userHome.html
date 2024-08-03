@@ -64,7 +64,7 @@
 			<!-- top search form -->
 			<form th:action="@{/user/search}" id="searchForm" class="top-search">
 				<select name="genreId">
-					<option value="">All Categories</option>
+					<option value="">All</option>
 					<option th:each="genre : ${genres}" th:value="${genre.genreId}" th:text="${genre.name}" th:selected="${gId} == ${genre.genreId}">
 					</option>
 				</select>
