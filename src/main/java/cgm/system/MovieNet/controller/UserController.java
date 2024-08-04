@@ -129,6 +129,8 @@ public class UserController {
         model.addAttribute("rating", rating);
 
         model.addAttribute("moviePage", moviePage);
+        model.addAttribute("user", userRepository.findById(this.userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user id: " + userId)));
 
         return "/user/userHome"; // Thymeleaf template name
     }

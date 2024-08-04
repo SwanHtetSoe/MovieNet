@@ -136,6 +136,8 @@ public class AdminController {
         model.addAttribute("adm_rating", rating);
 
         model.addAttribute("adm_moviePage", moviePage);
+        model.addAttribute("user", userRepository.findById(this.admin_userId )
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user id: " + admin_userId )));
 
         return "/admin/adminHome"; // Thymeleaf template name
     }

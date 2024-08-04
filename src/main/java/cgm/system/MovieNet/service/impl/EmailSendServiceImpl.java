@@ -47,7 +47,7 @@ public class EmailSendServiceImpl implements EmailSendService {
                 Url;*/
 
         // Create the password reset URL
-        String resetUrl = "http://localhost:8080/reset_password?token=" + token;
+        String resetUrl = "http://localhost:9090/reset_password?token=" + token;
 
         // Create the email message content
         String body = "Hello " + user.getName() + ",\n\n" +
