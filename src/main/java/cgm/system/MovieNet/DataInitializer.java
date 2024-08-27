@@ -2037,7 +2037,7 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
 
             User user2 = new User(
                     "Swan Soe",
-                    "swanh@gmail.com",
+                    "swanht@gmail.com",
                     passwordEncoder.encode("admin123"),
                     role2,
                     "/img/profile/user2.jpg");

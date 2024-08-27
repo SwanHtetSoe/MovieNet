@@ -8323,3 +8323,24 @@ height: 300px;
   .add-review-color{
   color: #abb7c4;
   }
+
+  .flex-sign{
+  display:flex;
+  margin-top:20px;
+
+  }
+
+  .flex-sign div{
+  width:38%;}
+
+  .p-left{
+  padding-left:300px;}
+
+  .font-size-28{
+  font-size:28px;}
+
+  .font-size-25{
+    font-size:25px;}
+
+  .height{
+  height:60px;}
